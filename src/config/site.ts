@@ -1,15 +1,9 @@
-import { NavItem } from "@/types/nav";
-
-interface SiteConfig {
-  name: string;
-  description: string;
-  mainNav: NavItem[];
-  links: { [key: string]: string };
-}
+import { SiteConfig } from "@/types";
 
 export const siteConfig: SiteConfig = {
   name: "Hashira",
   description: "A simple and fast Anime Streaming Website",
+
   mainNav: [
     {
       title: "Home",
@@ -20,8 +14,10 @@ export const siteConfig: SiteConfig = {
       href: "/about",
     },
   ],
+
   links: {
-    twitter: "https://twitter.com/shadcn",
-    github: "https://github.com/shadcn/ui",
+    github: "https://github.com/rajput-hemant/hashira",
+    twitter: "https://twitter.com/rajput_hemant01",
+    discord: "https://discord.gg/rajput-hemant#8269",
   },
 };

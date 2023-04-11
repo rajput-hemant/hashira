@@ -1,9 +1,11 @@
 import { Metadata } from "next";
 
-import { overpass } from "@/lib/fonts";
-import { Providers } from "./providers";
-import "@/styles/globals.css";
 import { siteConfig } from "@/config/site";
+import { overpass } from "@/lib/fonts";
+import BottomNav from "@/components/navbar/bottom-nav";
+import Navbar from "@/components/navbar/navbar";
+import Providers from "./providers";
+import "@/styles/globals.css";
 
 interface RootLayoutProps {
   children: React.ReactNode;
@@ -16,9 +18,14 @@ export const metadata: Metadata = {
 
 const RootLayout = ({ children }: RootLayoutProps) => {
   return (
-    <html lang="en" className={overpass.className}>
-      <body className="bg-slate-100 dark:bg-grey-800">
-        <Providers>{children}</Providers>
+    <html lang="en" className={`${overpass.className} text-white`}>
+      <body className="bg-fill-box">
+        <Providers>
+          <Navbar />
+          <BottomNav />
+
+          {children}
+        </Providers>
       </body>
     </html>
   );
