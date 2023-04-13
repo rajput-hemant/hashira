@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Book, Clapperboard, Home, User } from "lucide-react";
 
-import NavClient from "./client";
+import NavClient from "./navbar-client";
 
 const BottomNav = () => {
   return (

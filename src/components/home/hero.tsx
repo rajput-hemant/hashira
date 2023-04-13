@@ -13,17 +13,17 @@ import {
   Youtube,
 } from "lucide-react";
 import { useSession } from "next-auth/react";
-import { A11y, Autoplay, Mousewheel } from "swiper";
+import { Autoplay, Mousewheel } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import { overpass } from "@/lib/fonts";
-import { cleanHTML } from "@/lib/utils";
+import { cleanHTML, cn, getAnimeTitle } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { Button } from "../ui/button";
+import { H3, H4, Small } from "@/components/ui/topography";
 // Import Swiper styles
 import "swiper/swiper.min.css";
 
@@ -34,39 +34,36 @@ interface HeroProps {
 const Hero = ({ trending }: HeroProps) => {
   const { status } = useSession();
 
-  const getAnimeTitle = (anime: IAnimeInfo) => {
-    if (typeof anime.title == "string") {
-      return anime.title;
-    } else {
-      return anime.title.english ?? "";
+  const progressRef = React.useRef<HTMLDivElement>(null);
+
+  const autoplayProgressHandler = (_: any, __: any, percentage: number) => {
+    if (progressRef.current) {
+      progressRef.current.style.width = `${100 - percentage * 100}%`;
     }
   };
 
   return (
     /* main wrapper */
-    <section className="flex w-full flex-col gap-4 py-6 md:flex-row">
-      <div className="h-44 w-full rounded-lg md:h-[18rem] md:w-3/4 lg:h-[24rem]">
+    <section className="flex w-full flex-col gap-4 py-3 md:flex-row md:py-6">
+      <div className="relative h-44 w-full rounded-lg md:h-[18rem] md:w-3/4 lg:h-[24rem]">
         {trending && (
           <Swiper
             className="h-full"
             slidesPerView={1}
-            onSlideChange={() => {}}
-            modules={[Autoplay, Mousewheel, A11y]}
+            modules={[Autoplay, Mousewheel]}
             loop={true}
+            mousewheel={true}
             autoplay={{
               delay: 3000,
               pauseOnMouseEnter: true,
             }}
-            mousewheel={true}
-            a11y={{
-              prevSlideMessage: "previous slide",
-              nextSlideMessage: "next slide",
-            }}
+            onAutoplayTimeLeft={autoplayProgressHandler}
           >
-            {trending.results.map((anime) => {
+            {trending.results.slice(0, -4).map((anime) => {
               return (
                 <SwiperSlide key={anime.id} className="rounded-lg">
                   <Image
+                    priority
                     src={anime.cover ?? ""}
                     alt={getAnimeTitle(anime)}
                     width={1440}
@@ -78,26 +75,23 @@ const Hero = ({ trending }: HeroProps) => {
                     <div className="relative flex w-3/4 flex-col gap-1 px-5 py-2 md:py-5 lg:p-10">
                       {/* title */}
                       <Tooltip>
-                        <TooltipTrigger className="w-full truncate text-start font-bold sm:text-lg md:py-1 md:text-2xl lg:text-3xl">
-                          {getAnimeTitle(anime)}
+                        <TooltipTrigger>
+                          <H3 className="truncate text-start font-bold">
+                            {getAnimeTitle(anime)}
+                          </H3>
                         </TooltipTrigger>
                         <TooltipContent side="bottom">
-                          {getAnimeTitle(anime)}
+                          <H4 fontInter>{getAnimeTitle(anime)}</H4>
                         </TooltipContent>
                       </Tooltip>
 
                       {/* description */}
-                      <p
-                        className={
-                          "line-clamp-3 text-xs md:line-clamp-[6] lg:line-clamp-[7] md:text-sm lg:text-base " +
-                          overpass.className
-                        }
-                      >
+                      <Small className="line-clamp-3 md:line-clamp-[6] lg:line-clamp-[7]">
                         {cleanHTML(anime.description ?? "")}
-                      </p>
+                      </Small>
 
                       {/* meta */}
-                      <div className="absolute bottom-16 flex place-items-center items-center gap-3 font-semibold md:bottom-20 lg:bottom-24">
+                      <div className="absolute bottom-16 flex place-items-center items-center gap-0.5 font-semibold md:bottom-20 lg:bottom-24">
                         {/* anime type */}
                         <MetaPara>
                           <Tv size={16} />
@@ -119,7 +113,7 @@ const Hero = ({ trending }: HeroProps) => {
                         </MetaPara>
                       </div>
 
-                      <div className="absolute bottom-4 flex w-full gap-3 font-bold tracking-tight md:bottom-6 lg:bottom-8 lg:text-lg">
+                      <div className="absolute bottom-4 flex w-full gap-2 font-bold tracking-tight md:bottom-6 md:gap-3 lg:bottom-8 lg:text-lg">
                         {/* play button */}
                         <Button
                           variant="green"
@@ -153,13 +147,15 @@ const Hero = ({ trending }: HeroProps) => {
 
                     <div className="relative h-full w-1/4 rounded-lg p-1">
                       <div className="flex h-full w-full items-center justify-center rounded-md p-1 backdrop-blur-md md:p-2 lg:px-5 lg:py-3">
-                        <Image
-                          src={anime.image ?? ""}
-                          alt={getAnimeTitle(anime)}
-                          width={480}
-                          height={270}
-                          className="h-full rounded-md object-cover"
-                        />
+                        <div className="group h-full w-full overflow-hidden rounded-md">
+                          <Image
+                            src={anime.image ?? ""}
+                            alt={getAnimeTitle(anime)}
+                            width={480}
+                            height={270}
+                            className="h-full rounded-md object-cover transition-transform duration-300 group-hover:scale-110"
+                          />
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -168,24 +164,29 @@ const Hero = ({ trending }: HeroProps) => {
             })}
           </Swiper>
         )}
+
+        {/* autoplay progress */}
+        <div
+          ref={progressRef}
+          className="absolute bottom-0 z-10 h-1 rounded-b-md bg-red-500"
+        />
       </div>
 
+      {/* anime grid */}
       <div className="grid h-32 w-full grid-cols-2 justify-between gap-2 rounded-lg md:flex md:h-[18rem] md:w-1/4 md:flex-col lg:h-[24rem]">
-        {[...trending.results].slice(0, 4).map((anime, i) => {
+        {trending.results.slice(-4).map((anime) => {
           return (
-            <div key={anime.id} className="relative h-full rounded-lg">
+            <Small className="group relative flex h-full items-center justify-center overflow-hidden rounded-lg bg-gradient-to-tr from-gray-900 to-transparent text-center font-bold">
               <Image
                 src={anime.image ?? ""}
                 alt={getAnimeTitle(anime)}
                 width={480}
                 height={270}
-                className="absolute -z-10 h-full rounded-lg object-cover"
+                className="absolute -z-10 h-full rounded-lg object-cover transition-transform duration-300 group-hover:scale-110"
               />
 
-              <p className="flex h-full w-full items-center justify-center bg-gradient-to-tr from-gray-900 to-transparent text-center text-sm font-bold md:text-base">
-                {getAnimeTitle(anime)}
-              </p>
-            </div>
+              {getAnimeTitle(anime)}
+            </Small>
           );
         })}
       </div>
@@ -195,8 +196,21 @@ const Hero = ({ trending }: HeroProps) => {
 
 export default Hero;
 
-const MetaPara = ({ children }: { children: React.ReactNode }) => {
+const MetaPara = ({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) => {
   return (
-    <p className="flex gap-1 text-xs tracking-tight md:text-sm">{children}</p>
+    <p
+      className={cn(
+        "flex gap-0.5 rounded bg-transparent px-1 text-sm tracking-tight backdrop-blur-md md:gap-1 md:px-2",
+        className
+      )}
+    >
+      {children}
+    </p>
   );
 };
