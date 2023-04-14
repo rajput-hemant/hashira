@@ -15,6 +15,7 @@ import { Icons } from "../icons";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { Separator } from "../ui/separator";
+import { ToastAction } from "../ui/toast";
 
 type FormData = z.infer<typeof userAuthSchema>;
 
@@ -53,6 +54,21 @@ const UserAuthForm = () => {
     return toast({
       title: "Check your email",
       description: "We sent you a login link. Be sure to check your spam too.",
+    });
+  };
+
+  const googleSignInHandler = () => {
+    setIsGoogleLoading(true);
+    signIn("google", { callbackUrl: "/" });
+  };
+
+  const guestSignInHandler = () => {
+    toast({
+      title: "Guest sign in",
+      description:
+        "This feature is not available yet. You can sign in with Google for now.",
+      variant: "destructive",
+      action: <ToastAction altText="Dismiss">Dismiss</ToastAction>,
     });
   };
 
@@ -109,10 +125,7 @@ const UserAuthForm = () => {
         {/* google signin button */}
         <Button
           type="button"
-          onClick={() => {
-            setIsGoogleLoading(true);
-            signIn("google", { callbackUrl: "/" });
-          }}
+          onClick={googleSignInHandler}
           disabled={isLoading || isGoogleLoading}
           className="group/button h-12 w-full border border-zinc-600 hover:border-red-600 hover:bg-red-500 md:h-14"
         >
@@ -129,16 +142,12 @@ const UserAuthForm = () => {
         {/* guest signin button */}
         <Button
           type="submit"
-          disabled={isLoading || isGoogleLoading}
-          onClick={() => {}}
+          // disabled
+          onClick={guestSignInHandler}
           className="h-12 w-full border border-zinc-600 hover:border-blue-600 hover:bg-blue-500 md:h-14"
         >
           <p className="flex gap-x-2 font-bold text-inherit">
-            {isLoading ? (
-              <Loader2 className="h-5 animate-spin" />
-            ) : (
-              <User className="h-5" />
-            )}
+            <User className="h-5" />
             Sign in as Guest
           </p>
         </Button>

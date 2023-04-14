@@ -5,7 +5,7 @@ import NavClient from "./navbar-client";
 
 const BottomNav = () => {
   return (
-    <NavClient>
+    <NavClient isBottomNav>
       <footer className="fixed bottom-0 z-40 w-full border-t border-white/10 backdrop-blur md:hidden">
         <div className="flex h-14 items-center justify-around">
           <Link href="/">

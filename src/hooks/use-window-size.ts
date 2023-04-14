@@ -1,11 +1,28 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+
+import useEventListener from "./use-event-listner";
+import { useIsomorphicLayoutEffect } from "./use-isomorphic-layout-effect";
 
 const useWindowSize = () => {
+  /**
+   * might give window not defined error
+   */
+  // const [windowDimension, setWindowDimension] = useState({
+  //   winWidth: window.innerWidth,
+  //   winHeight: window.innerHeight,
+  // });
+
+  // useEffect(() => {
+  //   // dispatch handleResize fn on window resize
+  //   window.addEventListener("resize", handleResize);
+
+  //   // removing prev listner to prevent memory leak
+  //   return () => window.removeEventListener("resize", handleResize);
+  // }, []);
+
   const [windowDimension, setWindowDimension] = useState({
-    winWidth: 0,
-    winHeight: 0,
-    // winWidth: window.innerWidth, // might give window not defined error
-    // winHeight: window.innerHeight,
+    winWidth: 1920,
+    winHeight: 1080,
   });
 
   const handleResize = () => {
@@ -15,12 +32,12 @@ const useWindowSize = () => {
     });
   };
 
-  useEffect(() => {
-    //dispatch handleResize fn on window resize
-    window.addEventListener("resize", handleResize);
+  useEventListener("resize", handleResize);
 
-    //removing prev listner to prevent memory leak
-    return () => window.removeEventListener("resize", handleResize);
+  // Set size at the first client-side load
+  useIsomorphicLayoutEffect(() => {
+    handleResize();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const isMobile = windowDimension.winWidth <= 767;

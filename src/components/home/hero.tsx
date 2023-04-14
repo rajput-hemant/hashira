@@ -176,7 +176,10 @@ const Hero = ({ trending }: HeroProps) => {
       <div className="grid h-32 w-full grid-cols-2 justify-between gap-2 rounded-lg md:flex md:h-[18rem] md:w-1/4 md:flex-col lg:h-[24rem]">
         {trending.results.slice(-4).map((anime) => {
           return (
-            <Small className="group relative flex h-full items-center justify-center overflow-hidden rounded-lg bg-gradient-to-tr from-gray-900 to-transparent text-center font-bold">
+            <Small
+              key={anime.id}
+              className="group relative flex h-full items-center justify-center overflow-hidden rounded-lg bg-gradient-to-tr from-gray-900 to-transparent text-center font-bold"
+            >
               <Image
                 src={anime.image ?? ""}
                 alt={getAnimeTitle(anime)}

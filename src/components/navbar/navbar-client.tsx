@@ -3,7 +3,12 @@
 import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 
-const NavClient = ({ children }: { children: React.ReactNode }) => {
+interface NavClientProps {
+  isBottomNav?: boolean;
+  children: React.ReactNode;
+}
+
+const NavClient = ({ isBottomNav, children }: NavClientProps) => {
   const pathname = usePathname();
   const headerRef = useRef<HTMLHeadElement>(null);
 
@@ -39,14 +44,17 @@ const NavClient = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <>
-      {!excludedPaths.includes(pathname!) && (
-        <header
-          ref={headerRef}
-          className="sticky top-0 z-40 w-full border-b border-white/10 backdrop-blur transition-transform duration-300"
-        >
-          {children}
-        </header>
-      )}
+      {!excludedPaths.includes(pathname!) &&
+        (isBottomNav ? (
+          children
+        ) : (
+          <header
+            ref={headerRef}
+            className="sticky top-0 z-40 w-full border-b border-white/10 backdrop-blur transition-transform duration-300"
+          >
+            {children}
+          </header>
+        ))}
     </>
   );
 };
