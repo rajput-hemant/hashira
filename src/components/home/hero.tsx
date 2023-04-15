@@ -8,22 +8,25 @@ import {
   Calendar,
   Folder,
   Info,
+  LucideIcon,
   PlayCircle,
   Tv,
   Youtube,
 } from "lucide-react";
 import { useSession } from "next-auth/react";
-import { Autoplay, Mousewheel } from "swiper";
+import { Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import { cleanHTML, cn, getAnimeTitle } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { H3, H4, Small } from "@/components/ui/topography";
+import TrailerModal from "../youtube/trailer-modal";
 // Import Swiper styles
 import "swiper/swiper.min.css";
 
@@ -45,14 +48,14 @@ const Hero = ({ trending }: HeroProps) => {
   return (
     /* main wrapper */
     <section className="flex w-full flex-col gap-4 py-3 md:flex-row md:py-6">
-      <div className="relative h-44 w-full rounded-lg md:h-[18rem] md:w-3/4 lg:h-[24rem]">
+      <div className="relative h-44 w-full rounded-lg border border-zinc-600 md:h-[18rem] md:w-3/4 lg:h-[24rem]">
         {trending && (
           <Swiper
             className="h-full"
             slidesPerView={1}
-            modules={[Autoplay, Mousewheel]}
-            loop={true}
-            mousewheel={true}
+            modules={[Autoplay]}
+            loop
+            mousewheel={false}
             autoplay={{
               delay: 3000,
               pauseOnMouseEnter: true,
@@ -91,24 +94,19 @@ const Hero = ({ trending }: HeroProps) => {
                       </Small>
 
                       {/* meta */}
-                      <div className="absolute bottom-16 flex place-items-center items-center gap-0.5 font-semibold md:bottom-20 lg:bottom-24">
+                      <div className="absolute bottom-16 flex place-items-center items-center gap-0.5 font-semibold md:bottom-20 md:gap-1 lg:bottom-24 lg:gap-2">
                         {/* anime type */}
-                        <MetaPara>
-                          <Tv size={16} />
-                          {anime.type ?? "N/A"}
-                        </MetaPara>
+                        <MetaPara icon={Tv}>{anime.type ?? "N/A"}</MetaPara>
 
                         {/* total episodes */}
-                        <MetaPara>
-                          <Folder size={16} />
+                        <MetaPara icon={Folder}>
                           {anime.totalEpisodes === 1
                             ? "1 Episode"
                             : `${anime.totalEpisodes} Episodes` ?? "N/A"}
                         </MetaPara>
 
                         {/* anime release date */}
-                        <MetaPara>
-                          <Calendar size={16} />
+                        <MetaPara icon={Calendar}>
                           {anime.releaseDate ?? "N/A"}
                         </MetaPara>
                       </div>
@@ -124,12 +122,20 @@ const Hero = ({ trending }: HeroProps) => {
                         </Button>
 
                         {/* youtube trailer button */}
-                        <Button
-                          variant="destructive"
-                          className="h-9 gap-1 px-2 md:h-10 md:px-2 lg:h-10 lg:px-4"
+                        <TrailerModal
+                          id={anime.trailer?.id ?? ""}
+                          title={getAnimeTitle(anime)}
                         >
-                          <Youtube className="h-5 w-5 md:h-6 md:w-6" />
-                        </Button>
+                          <div
+                            className={buttonVariants({
+                              variant: "destructive",
+                              className:
+                                "h-9 gap-1 px-2 md:h-10 md:px-2 lg:h-10 lg:px-4",
+                            })}
+                          >
+                            <Youtube className="h-5 w-5 md:h-6 md:w-6" />
+                          </div>
+                        </TrailerModal>
 
                         {/* add to watchlist button */}
                         {status == "authenticated" && (
@@ -145,20 +151,20 @@ const Hero = ({ trending }: HeroProps) => {
                       </div>
                     </div>
 
-                    <div className="relative h-full w-1/4 rounded-lg p-1">
-                      <div className="flex h-full w-full items-center justify-center rounded-md p-1 backdrop-blur-md md:p-2 lg:px-5 lg:py-3">
-                        <div className="group h-full w-full overflow-hidden rounded-md">
-                          <Image
-                            src={anime.image ?? ""}
-                            alt={getAnimeTitle(anime)}
-                            width={480}
-                            height={270}
-                            className="h-full rounded-md object-cover transition-transform duration-300 group-hover:scale-110"
-                          />
-                        </div>
+                    <div className="relative aspect-[3/4] h-full w-1/4 rounded-lg px-1 py-2 sm:pl-5 md:px-2 md:py-5 lg:px-5 lg:py-6">
+                      {/* <div className="flex h-full w-full items-center justify-center rounded-md p-1 backdrop-blur-md md:p-2 lg:px-5 lg:py-3"> */}
+                      <div className="group h-full w-full overflow-hidden rounded-md border border-zinc-600">
+                        <Image
+                          src={anime.image ?? ""}
+                          alt={getAnimeTitle(anime)}
+                          width={480}
+                          height={270}
+                          className="h-full rounded-md object-cover transition-transform duration-300 group-hover:scale-110"
+                        />
                       </div>
                     </div>
                   </div>
+                  {/* </div> */}
                 </SwiperSlide>
               );
             })}
@@ -168,7 +174,7 @@ const Hero = ({ trending }: HeroProps) => {
         {/* autoplay progress */}
         <div
           ref={progressRef}
-          className="absolute bottom-0 z-10 h-1 rounded-b-md bg-red-500"
+          className="absolute bottom-0 z-10 mx-0.5 h-1 rounded-b-md bg-rose-500"
         />
       </div>
 
@@ -178,7 +184,7 @@ const Hero = ({ trending }: HeroProps) => {
           return (
             <Small
               key={anime.id}
-              className="group relative flex h-full items-center justify-center overflow-hidden rounded-lg bg-gradient-to-tr from-gray-900 to-transparent text-center font-bold"
+              className="group relative flex h-full items-center justify-center overflow-hidden rounded-lg border border-zinc-600 bg-gradient-to-tr from-gray-900 to-transparent text-center font-bold hover:border-rose-500"
             >
               <Image
                 src={anime.image ?? ""}
@@ -202,18 +208,19 @@ export default Hero;
 const MetaPara = ({
   children,
   className,
+  icon: Icon,
 }: {
   children: React.ReactNode;
   className?: string;
+  icon: LucideIcon;
 }) => {
   return (
-    <p
-      className={cn(
-        "flex gap-0.5 rounded bg-transparent px-1 text-sm tracking-tight backdrop-blur-md md:gap-1 md:px-2",
-        className
-      )}
+    <Badge
+      // variant="secondary"
+      className={cn("flex gap-0.5 md:gap-1", className)}
     >
-      {children}
-    </p>
+      <Icon size={16} />
+      <span className="mt-1">{children}</span>
+    </Badge>
   );
 };

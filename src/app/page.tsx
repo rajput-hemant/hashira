@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { META } from "@consumet/extensions";
 
 import { UpcomingAnime } from "@/types/anime";
@@ -34,19 +35,21 @@ const Home = async () => {
   const { trending, popular, recentReleases, upcomingAnime } = await getAnime();
 
   return (
-    <div className="container">
-      {/* hero */}
-      <Hero trending={trending} />
+    <Suspense>
+      <div className="container">
+        {/* hero */}
+        <Hero trending={trending} />
 
-      <H2>Upcoming Anime</H2>
-      <SwiperClient items={upcomingAnime} isUpcoming />
+        <H2>Upcoming Anime</H2>
+        <SwiperClient items={upcomingAnime} isUpcoming />
 
-      <H2>Popular Anime</H2>
-      <SwiperClient items={popular} />
+        <H2>Popular Anime</H2>
+        <SwiperClient items={popular} />
 
-      <H2>Recent Releases</H2>
-      <SwiperClient items={recentReleases} />
-    </div>
+        <H2>Recent Releases</H2>
+        <SwiperClient items={recentReleases} />
+      </div>
+    </Suspense>
   );
 };
 

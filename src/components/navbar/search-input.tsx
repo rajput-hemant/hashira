@@ -1,12 +1,12 @@
 import { SearchIcon } from "lucide-react";
 
+import { buttonVariants } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { buttonVariants } from "../ui/button";
-import { Input } from "../ui/input";
 
 const Search = () => {
   return (
@@ -15,7 +15,7 @@ const Search = () => {
         <Input
           icon={SearchIcon}
           placeholder="Search title, movies, shows..."
-          className="h-10 w-64 md:flex md:w-72"
+          className="h-10 w-64 border-none md:flex md:w-72"
         />
       </div>
 

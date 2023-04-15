@@ -1,9 +1,9 @@
 import Link from "next/link";
 
 import { siteConfig } from "@/config/site";
+import { buttonVariants } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
 import { Icons } from "../icons";
-import { buttonVariants } from "../ui/button";
-import { Separator } from "../ui/separator";
 
 const SocialNav = () => {
   return (

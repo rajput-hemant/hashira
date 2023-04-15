@@ -11,11 +11,11 @@ import { z } from "zod";
 
 import { cn } from "@/lib/utils";
 import { userAuthSchema } from "@/lib/validation";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Separator } from "@/components/ui/separator";
+import { ToastAction } from "@/components/ui/toast";
 import { Icons } from "../icons";
-import { Button } from "../ui/button";
-import { Input } from "../ui/input";
-import { Separator } from "../ui/separator";
-import { ToastAction } from "../ui/toast";
 
 type FormData = z.infer<typeof userAuthSchema>;
 

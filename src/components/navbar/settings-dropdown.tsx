@@ -1,11 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { LogOut, Menu, X } from "lucide-react";
+import { toast } from "@/hooks/use-toast";
+import { Loader2, LogOut, Menu, X } from "lucide-react";
 import { signOut, useSession } from "next-auth/react";
 
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import { buttonVariants } from "../ui/button";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { buttonVariants } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -18,11 +19,20 @@ import {
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
-} from "../ui/dropdown-menu";
+} from "@/components/ui/dropdown-menu";
 
 const Settings = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { data: session } = useSession();
+
+  const logout = async () => {
+    await signOut();
+
+    toast({
+      title: "Logged out",
+      description: "You have been successfully logged out.",
+    });
+  };
 
   return (
     <DropdownMenu onOpenChange={() => setIsOpen(!isOpen)}>
@@ -97,10 +107,10 @@ const Settings = () => {
 
         <DropdownMenuSeparator />
 
-        <DropdownMenuItem>
-          <button onClick={() => signOut()} className="flex gap-1">
-            <LogOut className="h-4 w-4" />
+        <DropdownMenuItem className="">
+          <button onClick={logout} className="flex w-full justify-between">
             Log out
+            <LogOut className="h-4 w-4" />
           </button>
         </DropdownMenuItem>
       </DropdownMenuContent>
