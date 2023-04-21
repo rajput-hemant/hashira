@@ -6,7 +6,6 @@ import NavClient from "./navbar-client";
 import NavMenu from "./navbar-menu";
 import Search from "./search-input";
 import Settings from "./settings-dropdown";
-import SocialNav from "./social-nav";
 
 const Navbar = () => {
   return (
@@ -28,12 +27,9 @@ const Navbar = () => {
         </div>
 
         {/* right half of navbar  */}
-        <div className="flex flex-1 items-center justify-end md:space-x-1">
+        <div className="flex flex-1 items-center justify-end md:space-x-4">
           {/* search */}
           <Search />
-
-          {/* social link */}
-          <SocialNav />
 
           {/* user settings */}
           <Settings />

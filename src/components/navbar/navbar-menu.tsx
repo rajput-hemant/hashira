@@ -68,10 +68,7 @@ const NavMenu = () => {
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>
-
-        <NavigationMenuIndicator />
       </NavigationMenuList>
-      <NavigationMenuViewport />
     </NavigationMenu>
   );
 };

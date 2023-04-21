@@ -34,7 +34,11 @@ const NavigationMenuList = React.forwardRef<
       className
     )}
     {...props}
-  />
+  >
+    {props.children}
+
+    <NavigationMenuIndicator />
+  </NavigationMenuPrimitive.List>
 ));
 NavigationMenuList.displayName = NavigationMenuPrimitive.List.displayName;
 

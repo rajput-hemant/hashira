@@ -8,13 +8,14 @@ export default withAuth(
 
     const isAuth = !!token;
 
+    const isHomePage = req.nextUrl.pathname === "/";
     const isAuthPage =
       req.nextUrl.pathname.startsWith("/login") ||
       req.nextUrl.pathname.startsWith("/signup");
 
-    if (isAuthPage) {
+    if (isHomePage || isAuthPage) {
       if (isAuth) {
-        return NextResponse.redirect(new URL("/", req.url));
+        return NextResponse.redirect(new URL("/anime", req.url));
       }
 
       return null;

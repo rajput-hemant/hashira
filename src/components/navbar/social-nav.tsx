@@ -7,8 +7,7 @@ import { Icons } from "../icons";
 
 const SocialNav = () => {
   return (
-    <nav className="hidden items-center gap-2 px-1 lg:flex">
-      <Separator orientation="vertical" className="h-8" />
+    <nav className="hidden items-center gap-2 px-1 sm:flex">
       <Link href={siteConfig.links.github} target="_blank" rel="noreferrer">
         <div
           className={buttonVariants({

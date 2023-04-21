@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import { IAnimeInfo, ISearch } from "@consumet/extensions";
+import { ISearch } from "@consumet/extensions";
 import {
   Bookmark,
   Calendar,
@@ -17,6 +17,7 @@ import { useSession } from "next-auth/react";
 import { Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
+import { IAnimeResultV2 } from "@/types/anime";
 import { cleanHTML, cn, getAnimeTitle } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import { Button, buttonVariants } from "@/components/ui/button";
@@ -31,7 +32,7 @@ import TrailerModal from "../youtube/trailer-modal";
 import "swiper/swiper.min.css";
 
 interface HeroProps {
-  trending: ISearch<IAnimeInfo>;
+  trending: ISearch<IAnimeResultV2>;
 }
 
 const Hero = ({ trending }: HeroProps) => {
@@ -48,7 +49,12 @@ const Hero = ({ trending }: HeroProps) => {
   return (
     /* main wrapper */
     <section className="flex w-full flex-col gap-4 py-3 md:flex-row md:py-6">
-      <div className="relative h-44 w-full rounded-lg border border-zinc-600 md:h-[18rem] md:w-3/4 lg:h-[24rem]">
+      <div
+        className={cn(
+          "relative h-44 w-full rounded-lg border border-zinc-600 shadow-lg hover:border-rose-500 md:h-[18rem] md:w-3/4 lg:h-[24rem]",
+          "ring-1 ring-gray-400 ring-offset-2 ring-offset-gray-300 hover:shadow-rose-500 hover:ring-rose-500 hover:ring-offset-rose-500"
+        )}
+      >
         {trending && (
           <Swiper
             className="h-full"
@@ -152,7 +158,6 @@ const Hero = ({ trending }: HeroProps) => {
                     </div>
 
                     <div className="relative aspect-[3/4] h-full w-1/4 rounded-lg px-1 py-2 sm:pl-5 md:px-2 md:py-5 lg:px-5 lg:py-6">
-                      {/* <div className="flex h-full w-full items-center justify-center rounded-md p-1 backdrop-blur-md md:p-2 lg:px-5 lg:py-3"> */}
                       <div className="group h-full w-full overflow-hidden rounded-md border border-zinc-600">
                         <Image
                           src={anime.image ?? ""}
@@ -164,7 +169,6 @@ const Hero = ({ trending }: HeroProps) => {
                       </div>
                     </div>
                   </div>
-                  {/* </div> */}
                 </SwiperSlide>
               );
             })}
@@ -174,7 +178,7 @@ const Hero = ({ trending }: HeroProps) => {
         {/* autoplay progress */}
         <div
           ref={progressRef}
-          className="absolute bottom-0 z-10 mx-0.5 h-1 rounded-b-md bg-rose-500"
+          className="absolute -bottom-1 z-10 mx-0.5 h-1 rounded-b-lg bg-rose-500"
         />
       </div>
 
@@ -184,7 +188,10 @@ const Hero = ({ trending }: HeroProps) => {
           return (
             <Small
               key={anime.id}
-              className="group relative flex h-full items-center justify-center overflow-hidden rounded-lg border border-zinc-600 bg-gradient-to-tr from-gray-900 to-transparent text-center font-bold hover:border-rose-500"
+              className={cn(
+                "group relative flex h-full items-center justify-center overflow-hidden rounded-lg border border-zinc-600 bg-gradient-to-tr from-gray-900 to-transparent text-center font-bold shadow-lg hover:border-rose-500",
+                "ring-1 ring-gray-400 ring-offset-2 ring-offset-gray-300 hover:shadow-rose-500 hover:ring-rose-500 hover:ring-offset-rose-500"
+              )}
             >
               <Image
                 src={anime.image ?? ""}
@@ -215,10 +222,7 @@ const MetaPara = ({
   icon: LucideIcon;
 }) => {
   return (
-    <Badge
-      // variant="secondary"
-      className={cn("flex gap-0.5 md:gap-1", className)}
-    >
+    <Badge className={cn("flex gap-0.5 md:gap-1", className)}>
       <Icon size={16} />
       <span className="mt-1">{children}</span>
     </Badge>

@@ -1,3 +1,16 @@
+import { IAnimeResult } from "@consumet/extensions";
+import { Trailer } from "@consumet/extensions/dist/models/types";
+
+export interface IAnimeResultV2 extends IAnimeResult {
+  malId?: number | string;
+  genres?: string[];
+  color?: string;
+  description?: string;
+  totalEpisodes?: number;
+  trailer?: Trailer;
+  duration?: number;
+}
+
 export interface UpcomingAnime {
   pagination: Pagination;
   data: UpcomingAnimeData[];
@@ -20,7 +33,7 @@ export interface UpcomingAnimeData {
   mal_id: number;
   url: string;
   images: Images;
-  trailer: Trailer;
+  trailer: TrailerUpcomingAnime;
   approved: boolean;
   titles: Title[];
   /** @deprecated */
@@ -77,7 +90,7 @@ interface Image {
   large_image_url?: string;
 }
 
-interface Trailer {
+interface TrailerUpcomingAnime {
   youtube_id?: string;
   url?: string;
   embed_url?: string;

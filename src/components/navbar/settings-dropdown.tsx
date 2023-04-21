@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { toast } from "@/hooks/use-toast";
-import { Loader2, LogOut, Menu, X } from "lucide-react";
+import { LogOut, Menu, X } from "lucide-react";
 import { signOut, useSession } from "next-auth/react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";

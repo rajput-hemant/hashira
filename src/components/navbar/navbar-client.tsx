@@ -12,7 +12,7 @@ const NavClient = ({ isBottomNav, children }: NavClientProps) => {
   const pathname = usePathname();
   const headerRef = useRef<HTMLHeadElement>(null);
 
-  const excludedPaths = ["/login", "/signup"];
+  const excludedPaths = ["/", "/login", "/signup"];
 
   useEffect(() => {
     let lastScrollY = 0;
@@ -50,7 +50,7 @@ const NavClient = ({ isBottomNav, children }: NavClientProps) => {
         ) : (
           <header
             ref={headerRef}
-            className="sticky top-0 z-40 w-full border-b border-white/10 backdrop-blur transition-transform duration-300"
+            className="sticky top-0 z-40 w-full border-b border-zinc-600 bg-fill-box/50 backdrop-blur transition-transform duration-300"
           >
             {children}
           </header>
