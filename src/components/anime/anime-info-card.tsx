@@ -1,10 +1,9 @@
 import { use } from "react";
 import { IAnimeInfo, META } from "@consumet/extensions";
 import { Smile } from "lucide-react";
-import { IAnimeResultV2 } from "~/src/types/anime";
 
+import { IAnimeResultV2 } from "@/types/anime";
 import { Badge } from "../ui/badge";
-import { Separator } from "../ui/separator";
 import { Small } from "../ui/topography";
 
 const anilist = new META.Anilist();

@@ -2,37 +2,37 @@ import { Metadata } from "next";
 import { META } from "@consumet/extensions";
 
 import { store } from "@/store";
-import { setPopular } from "@/store/anime-slice";
+import { setTrending } from "@/store/anime-slice";
 import SwiperCard from "@/components/swiper/swiper-card";
 import { H1 } from "@/components/ui/topography";
 
 export const metadata: Metadata = {
-  title: "Popular Anime | Hashira",
-  description: "Browse popular anime on Hashira",
+  title: "Trending Anime | Hashira",
+  description: "Browse trending anime on Hashira",
 };
-
 const anilist = new META.Anilist();
 
-const fetchPopularAnime = async () => {
-  const popular = await anilist.fetchPopularAnime();
+const fetchTrendingAnime = async () => {
+  const trending = await anilist.fetchTrendingAnime();
 
-  // set popular anime in store
-  store.dispatch(setPopular(popular));
+  // set trending anime in store
+  store.dispatch(setTrending(trending));
 
-  return popular;
+  return trending;
 };
 
-const PopularAnimePage = async () => {
-  // get popular anime from store if it exists
+const RecentAnimePage = async () => {
+  // get trending anime from store if it exists
   // otherwise fetch it
-  const popular = store.getState().anime.popular ?? (await fetchPopularAnime());
+  const trending =
+    store.getState().anime.trending ?? (await fetchTrendingAnime());
 
   return (
     <>
-      <H1 className="py-4 sm:py-6 md:py-8">Popular Anime</H1>
+      <H1 className="py-4 sm:py-6 md:py-8">Trending Anime</H1>
 
       <div className="grid-rows grid h-full w-full grid-cols-2 gap-8 py-4 sm:grid-cols-3 md:grid-cols-4 md:gap-12 lg:grid-cols-5 xl:grid-cols-6">
-        {popular.results.map((anime) => (
+        {trending.results.map((anime) => (
           <SwiperCard
             key={anime.id}
             item={anime}
@@ -44,4 +44,4 @@ const PopularAnimePage = async () => {
   );
 };
 
-export default PopularAnimePage;
+export default RecentAnimePage;

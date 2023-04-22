@@ -115,9 +115,9 @@ const UserAuthForm = () => {
 
       {/* divider */}
       <div className="my-5 flex w-full items-center">
-        <Separator />
+        <Separator className="flex-1" />
         <span className="px-2 text-sm text-zinc-400">OR CONTINUE WITH</span>
-        <Separator />
+        <Separator className="flex-1" />
       </div>
 
       {/* buttons wrapper */}

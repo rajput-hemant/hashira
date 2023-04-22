@@ -12,9 +12,10 @@ type Item = IAnimeResultV2 | UpcomingAnimeData;
 interface SwipercardProps {
   item: Item;
   isUpcoming?: boolean;
+  className?: string;
 }
 
-const Swipercard = ({ item, isUpcoming }: SwipercardProps) => {
+const Swipercard = ({ item, isUpcoming, className }: SwipercardProps) => {
   const getImage = (item: Item) => {
     if (isUpcoming) {
       return (item as UpcomingAnimeData).images.webp.image_url ?? "";
@@ -44,7 +45,8 @@ const Swipercard = ({ item, isUpcoming }: SwipercardProps) => {
     <div
       className={cn(
         "group flex h-full w-fit cursor-pointer flex-col rounded-md border border-zinc-600 shadow-lg shadow-zinc-500 hover:border-rose-500",
-        "ring-1 ring-gray-400 ring-offset-2 ring-offset-white/50 hover:shadow-rose-500 hover:ring-rose-500 hover:ring-offset-rose-500"
+        "ring-1 ring-gray-400 ring-offset-2 ring-offset-white/50 hover:shadow-rose-500 hover:ring-rose-500 hover:ring-offset-rose-500",
+        className
       )}
     >
       {/* image */}

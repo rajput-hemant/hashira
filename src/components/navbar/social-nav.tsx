@@ -2,12 +2,11 @@ import Link from "next/link";
 
 import { siteConfig } from "@/config/site";
 import { buttonVariants } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
 import { Icons } from "../icons";
 
 const SocialNav = () => {
   return (
-    <nav className="hidden items-center gap-2 px-1 sm:flex">
+    <nav className="flex items-center gap-2 px-1">
       <Link href={siteConfig.links.github} target="_blank" rel="noreferrer">
         <div
           className={buttonVariants({
@@ -41,7 +40,6 @@ const SocialNav = () => {
           <span className="sr-only">Discord</span>
         </div>
       </Link>
-      <Separator orientation="vertical" className="h-8" />
     </nav>
   );
 };

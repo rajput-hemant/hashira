@@ -8,12 +8,10 @@ import { cn } from "@/lib/utils";
 import {
   NavigationMenu,
   NavigationMenuContent,
-  NavigationMenuIndicator,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-  NavigationMenuViewport,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 
@@ -21,7 +19,7 @@ const NavMenu = () => {
   return (
     <NavigationMenu className="hidden md:flex">
       <NavigationMenuList>
-        <NavigationMenuItem>
+        <NavigationMenuItem className="mx-0 px-0">
           <NavigationMenuTrigger>Browse</NavigationMenuTrigger>
 
           <NavigationMenuContent>

@@ -1,13 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import Kyojuro from "~/public/images/kyojuro-01.png";
 
 import { cn } from "@/lib/utils";
 import { Icons } from "@/components/icons";
 import SocialNav from "@/components/navbar/social-nav";
 import { buttonVariants } from "@/components/ui/button";
 import { H1, H2, H3 } from "@/components/ui/topography";
+import Kyojuro from "../../public/images/kyojuro-01.png";
 
 const Home = () => {
   return (
@@ -67,13 +67,6 @@ const Home = () => {
           </div>
         </Link>
       </main>
-
-      <footer className="absolute bottom-0 left-0 flex w-full justify-center text-zinc-300">
-        <div className="flex w-full max-w-7xl flex-col items-center justify-center border-t border-zinc-600 p-1 md:p-2">
-          <span>Released under the MIT License.</span>
-          Copyright © 2023 rajput-hemant@github
-        </div>
-      </footer>
     </div>
   );
 };

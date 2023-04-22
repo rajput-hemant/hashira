@@ -4,7 +4,7 @@ import { siteConfig } from "@/config/site";
 import { Icons } from "@/components/icons";
 import NavClient from "./navbar-client";
 import NavMenu from "./navbar-menu";
-import Search from "./search-input";
+import Search from "./search";
 import Settings from "./settings-dropdown";
 
 const Navbar = () => {
@@ -12,7 +12,7 @@ const Navbar = () => {
     <NavClient>
       <div className="container flex h-14 items-center sm:justify-between sm:space-x-0 md:h-16">
         {/* left half of navbar */}
-        <div className="flex gap-6">
+        <div className="flex lg:gap-4">
           {/* logo and title */}
 
           <Link href="/" className="flex items-center space-x-2">

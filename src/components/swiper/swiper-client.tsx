@@ -1,6 +1,6 @@
 "use client";
 
-import React, { Suspense, useRef } from "react";
+import React, { useRef } from "react";
 import useIsClient from "@/hooks/use-client";
 import useWindowSize from "@/hooks/use-window-size";
 import { ISearch } from "@consumet/extensions";
@@ -19,12 +19,12 @@ import {
   UpcomingAnimeData,
 } from "@/types/anime";
 import { cn } from "@/lib/utils";
-import AnimeInfoCard from "../anime/anime-info-card";
-import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from "../ui/hover-card";
+// import AnimeInfoCard from "../anime/anime-info-card";
+// import {
+//   HoverCard,
+//   HoverCardContent,
+//   HoverCardTrigger,
+// } from "../ui/hover-card";
 import { Skeleton } from "../ui/skeleton";
 import Swipercard from "./swiper-card";
 import "swiper/css/pagination";
@@ -108,12 +108,13 @@ const SwiperClient = ({ items, isUpcoming }: SwiperClientProps) => {
                 isUpcoming && "md:w-96"
               )}
             >
+              <Swipercard item={item} isUpcoming={isUpcoming} />
+              {/*
               <HoverCard openDelay={5} closeDelay={5}>
                 <HoverCardTrigger>
                   <Swipercard item={item} isUpcoming={isUpcoming} />
                 </HoverCardTrigger>
 
-                {/* show anime details on hover */}
                 {!isUpcoming && (
                   <HoverCardContent
                     side="right"
@@ -125,12 +126,13 @@ const SwiperClient = ({ items, isUpcoming }: SwiperClientProps) => {
                         <Loader2 className="flex w-full animate-spin items-center justify-center" />
                       }
                     >
-                      {/* @ts-ignore */}
+                      @ts-ignore // comment this line 
                       <AnimeInfoCard id={getId(item)} />
                     </Suspense>
                   </HoverCardContent>
                 )}
               </HoverCard>
+              */}
             </SwiperSlide>
           ))}
 
