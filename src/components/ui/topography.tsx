@@ -97,6 +97,24 @@ export const P = ({
   );
 };
 
+export const Large = ({
+  children,
+  className,
+  fontInter = false,
+}: TopographyProps) => {
+  return (
+    <div
+      className={cn(
+        "text-lg font-semibold",
+        className,
+        fontInter && inter.className
+      )}
+    >
+      {children}
+    </div>
+  );
+};
+
 export const Small = ({
   children,
   className,
@@ -112,5 +130,23 @@ export const Small = ({
     >
       {children}
     </small>
+  );
+};
+
+export const Subtle = ({
+  children,
+  className,
+  fontInter = false,
+}: TopographyProps) => {
+  return (
+    <p
+      className={cn(
+        "text-sm text-fill-light",
+        className,
+        fontInter && inter.className
+      )}
+    >
+      {children}
+    </p>
   );
 };

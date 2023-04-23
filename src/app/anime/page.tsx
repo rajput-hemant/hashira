@@ -82,7 +82,10 @@ type TitleProps = {
 
 const Title = ({ href, children }: TitleProps) => {
   return (
-    <div className="flex w-full items-center justify-between">
+    <div
+      id={href.split("/")[2]}
+      className="flex w-full items-center justify-between"
+    >
       <H2>{children}</H2>
 
       <Link

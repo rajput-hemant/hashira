@@ -5,12 +5,7 @@ import useIsClient from "@/hooks/use-client";
 import useWindowSize from "@/hooks/use-window-size";
 import { ISearch } from "@consumet/extensions";
 import { ArrowLeft, ArrowRight, Loader2 } from "lucide-react";
-import SwiperCore, {
-  Keyboard,
-  Mousewheel,
-  Pagination,
-  Scrollbar,
-} from "swiper";
+import SwiperCore, { Keyboard, Mousewheel, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import {
@@ -86,27 +81,24 @@ const SwiperClient = ({ items, isUpcoming }: SwiperClientProps) => {
   })();
 
   return (
-    <div className="mb-5 h-56 w-full pt-2 sm:h-72 md:mb-10 md:h-80 md:pt-6 lg:h-96">
+    <div className="mb-5 h-56 w-full sm:h-72 md:mb-10 md:h-80 lg:h-96">
       {isClient ? (
         <Swiper
           onBeforeInit={(swiper) => (swiperRef.current = swiper)}
           slidesPerView={slideCount}
           spaceBetween={spaceBetween}
           slidesPerGroup={slidesPerGroup}
-          modules={[Pagination, Mousewheel, Keyboard, Scrollbar, Mousewheel]}
+          modules={[Pagination, Keyboard, Mousewheel]}
           mousewheel
           keyboard
           grabCursor
           pagination={{ clickable: true }}
-          className="flex h-full w-full items-center justify-between gap-6 p-2 pb-8 md:pb-10"
+          className="flex h-full w-full items-center justify-between gap-6 px-1 pb-8 pt-4"
         >
           {data.map((item) => (
             <SwiperSlide
               key={getId(item)}
-              className={cn(
-                "h-full rounded-md lg:w-48",
-                isUpcoming && "md:w-96"
-              )}
+              className="h-full rounded-md lg:w-48"
             >
               <Swipercard item={item} isUpcoming={isUpcoming} />
               {/*
@@ -137,12 +129,12 @@ const SwiperClient = ({ items, isUpcoming }: SwiperClientProps) => {
           ))}
 
           {/* swiper previous button */}
-          <NavigationButton onClick={prevSlide} className="left-2">
+          <NavigationButton onClick={prevSlide} className="left-0">
             <ArrowLeft />
           </NavigationButton>
 
           {/* swiper next button */}
-          <NavigationButton onClick={nextSlide} className="right-2">
+          <NavigationButton onClick={nextSlide} className="right-0">
             <ArrowRight />
           </NavigationButton>
         </Swiper>

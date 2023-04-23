@@ -1,4 +1,4 @@
-import { ISearch } from "@consumet/extensions";
+import { IAnimeInfo, ISearch } from "@consumet/extensions";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 import { IAnimeResultV2, UpcomingAnime } from "../types/anime";
@@ -9,6 +9,7 @@ type AnimeState = {
   [T in "trending" | "popular" | "recent"]: AnimeResult | null;
 } & {
   upcoming: UpcomingAnime | null;
+  animeInfo: IAnimeInfo[] | null;
 };
 
 const animeInitialState: AnimeState = {
@@ -16,6 +17,7 @@ const animeInitialState: AnimeState = {
   trending: null,
   popular: null,
   recent: null,
+  animeInfo: null,
 };
 
 const animeSlice = createSlice({
@@ -37,10 +39,18 @@ const animeSlice = createSlice({
     setRecent(state, action: PayloadAction<AnimeResult>) {
       state.recent = action.payload;
     },
+
+    setAnimeInfo(state, action: PayloadAction<IAnimeInfo>) {
+      if (state.animeInfo) {
+        state.animeInfo.push(action.payload);
+      } else {
+        state.animeInfo = [action.payload];
+      }
+    },
   },
 });
 
-export const { setTrending, setUpcoming, setPopular, setRecent } =
+export const { setTrending, setUpcoming, setPopular, setRecent, setAnimeInfo } =
   animeSlice.actions;
 
 export default animeSlice.reducer;

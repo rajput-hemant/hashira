@@ -2,6 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { ISearch } from "@consumet/extensions";
 import {
   Bookmark,
@@ -19,18 +20,13 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 import { IAnimeResultV2 } from "@/types/anime";
 import { cleanHTML, cn, getAnimeTitle } from "@/lib/utils";
-import { Badge } from "@/components/ui/badge";
-import { Button, buttonVariants } from "@/components/ui/button";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { H3, H4, Small } from "@/components/ui/topography";
+import { Badge } from "../ui/badge";
+import { Button, buttonVariants } from "../ui/button";
+import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
+import { H3, H4, Small } from "../ui/topography";
 import TrailerModal from "../youtube/trailer-modal";
 // Import Swiper styles
 import "swiper/swiper.min.css";
-import Link from "next/link";
 
 interface HeroProps {
   trending: ISearch<IAnimeResultV2>;
@@ -49,7 +45,7 @@ const Hero = ({ trending }: HeroProps) => {
 
   return (
     /* main wrapper */
-    <section className=" flex flex-col items-center">
+    <section id="trending" className="flex flex-col items-center py-4 md:pb-8">
       <div className="flex w-full flex-col gap-4 py-3 md:flex-row md:py-6">
         <div
           className={cn(
@@ -79,7 +75,7 @@ const Hero = ({ trending }: HeroProps) => {
                       alt={getAnimeTitle(anime)}
                       width={1440}
                       height={810}
-                      className="absolute -z-10 h-full rounded-lg object-cover opacity-75"
+                      className="absolute -z-10 h-full rounded-lg object-cover blur-sm"
                     />
 
                     <div className="relative flex h-full w-full rounded-lg bg-gradient-to-r from-black/75 via-black/50 to-black/25">

@@ -2,9 +2,9 @@ import Link from "next/link";
 
 import { siteConfig } from "@/config/site";
 import { Icons } from "@/components/icons";
+import Search from "../search/search-popover";
 import NavClient from "./navbar-client";
 import NavMenu from "./navbar-menu";
-import Search from "./search";
 import Settings from "./settings-dropdown";
 
 const Navbar = () => {

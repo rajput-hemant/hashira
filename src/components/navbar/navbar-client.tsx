@@ -50,7 +50,7 @@ const NavClient = ({ isBottomNav, children }: NavClientProps) => {
         ) : (
           <header
             ref={headerRef}
-            className="sticky top-0 z-40 w-full border-b border-zinc-600 bg-fill-box/50 backdrop-blur transition-transform duration-300"
+            className="fixed top-0 z-40 w-full border-b border-zinc-600 backdrop-blur transition-all duration-300 hover:bg-fill-box/50"
           >
             {children}
           </header>
