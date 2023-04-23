@@ -6,9 +6,9 @@ import NavClient from "./navbar-client";
 const BottomNav = () => {
   return (
     <NavClient isBottomNav>
-      <footer className="fixed bottom-0 z-40 w-full border-t border-zinc-600 bg-fill-box/75 backdrop-blur md:hidden">
+      <footer className="fixed bottom-0 z-40 w-full border-t border-zinc-600 bg-fill-box/50 backdrop-blur hover:bg-fill-box/75 md:hidden">
         <div className="flex h-14 items-center justify-around">
-          <Link href="/">
+          <Link href="/anime">
             <Home />
           </Link>
 

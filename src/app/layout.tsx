@@ -19,15 +19,14 @@ interface RootLayoutProps {
 
 const RootLayout = ({ children }: RootLayoutProps) => {
   return (
-    <html lang="en" className={`${overpass.className} text-white`}>
-      <body className="bg-fill-box">
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${overpass.className} bg-fill-box text-white`}>
         <Providers>
           <Navbar />
           <BottomNav />
 
           {children}
         </Providers>
-
         <Footer />
       </body>
     </html>
