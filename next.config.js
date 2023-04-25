@@ -4,7 +4,7 @@ const nextConfig = {
     appDir: true,
   },
   images: {
-    domains: ["s4.anilist.co", "cdn.myanimelist.net"],
+    domains: ["s4.anilist.co", "cdn.myanimelist.net", "artworks.thetvdb.com"],
   },
 };
 

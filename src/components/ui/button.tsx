@@ -13,12 +13,12 @@ const buttonVariants = cva(
           "border-rose-700 bg-gradient-to-br from-rose-500 to-rose-600 hover:from-red-500 hover:to-red-600",
         outline:
           "border-zinc-600 bg-transparent text-slate-100 hover:bg-white hover:text-black",
-        blue: "bg-gradient-to-br from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800",
+        blue: "border-none bg-gradient-to-br from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800",
         green:
-          "border-green-600 bg-gradient-to-br from-green-300 to-green-500 text-black hover:from-green-500 hover:to-green-500",
+          "border-none border-green-600 bg-gradient-to-br from-green-300 to-green-500 text-black hover:from-green-500 hover:to-green-500",
         ghost:
           "border-transparent bg-transparent hover:border-zinc-600 hover:bg-white/10",
-        link: "bg-transparent underline-offset-4 hover:underline",
+        link: "border-none bg-transparent underline-offset-4 hover:underline",
       },
       size: {
         default: "h-10 px-4 py-2",

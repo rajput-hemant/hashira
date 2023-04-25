@@ -20,12 +20,12 @@ const Home = () => {
           </H2>
 
           <div className="ml-auto flex gap-2">
-            <SocialNav />
+            <SocialNav className="hidden md:flex" />
 
             <div
               className={cn(
                 buttonVariants({ variant: "blue" }),
-                "gap-2 rounded-full border-none"
+                "gap-2 rounded-full"
               )}
             >
               <Link href="/signup" className="font-bold">
@@ -57,7 +57,7 @@ const Home = () => {
           <div
             className={cn(
               buttonVariants({ variant: "blue" }),
-              "gap-2 rounded-full border-none p-6 pr-2 font-bold"
+              "gap-2 rounded-full p-6 pr-2 font-bold"
             )}
           >
             Get started

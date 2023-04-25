@@ -22,6 +22,7 @@ import { IAnimeResultV2 } from "@/types/anime";
 import { cleanHTML, cn, getAnimeTitle } from "@/lib/utils";
 import { Badge } from "../ui/badge";
 import { Button, buttonVariants } from "../ui/button";
+import { Skeleton } from "../ui/skeleton";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 import { H3, H4, Small } from "../ui/topography";
 import TrailerModal from "../youtube/trailer-modal";
@@ -69,6 +70,7 @@ const Hero = ({ trending }: HeroProps) => {
               {trending.results.slice(0, -4).map((anime) => {
                 return (
                   <SwiperSlide key={anime.id} className="rounded-lg">
+                    {/* banner image */}
                     <Image
                       priority
                       src={anime.cover ?? ""}
@@ -78,6 +80,7 @@ const Hero = ({ trending }: HeroProps) => {
                       className="absolute -z-10 h-full rounded-lg object-cover blur-sm"
                     />
 
+                    {/* overlay */}
                     <div className="relative flex h-full w-full rounded-lg bg-gradient-to-r from-black/75 via-black/50 to-black/25">
                       <div className="relative flex w-3/4 flex-col gap-1 px-5 py-2 md:py-5 lg:p-10">
                         {/* title */}
@@ -155,7 +158,8 @@ const Hero = ({ trending }: HeroProps) => {
                         </div>
                       </div>
 
-                      <div className="relative aspect-[3/4] h-full w-1/4 rounded-lg px-1 py-2 sm:pl-5 md:px-2 md:py-5 lg:px-5 lg:py-6">
+                      {/* anime image */}
+                      <div className="relative h-full w-1/4 rounded-lg px-1 py-2 sm:pl-5 md:px-2 md:py-5 lg:px-5 lg:py-6">
                         <div className="group h-full w-full overflow-hidden rounded-md border border-zinc-600">
                           <Image
                             src={anime.image ?? ""}
@@ -164,6 +168,9 @@ const Hero = ({ trending }: HeroProps) => {
                             height={270}
                             className="h-full rounded-md object-cover transition-transform duration-300 group-hover:scale-110"
                           />
+
+                          {/* skeleton loading */}
+                          <Skeleton className="bg-white/25" />
                         </div>
                       </div>
                     </div>
@@ -202,6 +209,9 @@ const Hero = ({ trending }: HeroProps) => {
                 <Small className="absolute flex h-full w-full items-center justify-center bg-gradient-to-tr from-gray-900 to-transparent text-center font-bold">
                   {getAnimeTitle(anime)}
                 </Small>
+
+                {/* skeleton loading */}
+                <Skeleton />
               </div>
             );
           })}

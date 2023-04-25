@@ -48,7 +48,7 @@ const NavMenu = () => {
           <NavigationMenuContent>
             <div className="grid w-56 place-items-center gap-2 p-4 font-bold">
               <Construction className="text-yellow-500" />
-              Under Construction
+              Under Development
             </div>
           </NavigationMenuContent>
         </NavigationMenuItem>
@@ -59,7 +59,7 @@ const NavMenu = () => {
           <NavigationMenuContent>
             <div className="grid w-56 place-items-center gap-2 p-4 font-bold">
               <Construction className="text-yellow-500" />
-              Under Construction
+              Under Development
             </div>
           </NavigationMenuContent>
         </NavigationMenuItem>

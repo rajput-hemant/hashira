@@ -14,7 +14,7 @@ import {
   UpcomingAnimeData,
 } from "@/types/anime";
 import { cn } from "@/lib/utils";
-// import AnimeInfoCard from "../anime/anime-info-card";
+// import AnimeInfoCard from "../anime/info-card";
 // import {
 //   HoverCard,
 //   HoverCardContent,
@@ -81,7 +81,7 @@ const SwiperClient = ({ items, isUpcoming }: SwiperClientProps) => {
   })();
 
   return (
-    <div className="mb-5 h-56 w-full sm:h-72 md:mb-10 md:h-80 lg:h-96">
+    <div className="mb-4 h-56 w-full sm:h-72 md:mb-10 md:mt-2 md:h-80 lg:h-96">
       {isClient ? (
         <Swiper
           onBeforeInit={(swiper) => (swiperRef.current = swiper)}
@@ -139,10 +139,11 @@ const SwiperClient = ({ items, isUpcoming }: SwiperClientProps) => {
           </NavigationButton>
         </Swiper>
       ) : (
-        <div className="relative flex h-full w-full">
+        <div className="relative grid h-full w-full place-items-center">
+          {/* skeleton loading */}
           <Skeleton />
 
-          <Loader2 className="absolute left-1/2 top-1/2 animate-spin" />
+          <Loader2 className="absolute animate-spin" />
         </div>
       )}
     </div>

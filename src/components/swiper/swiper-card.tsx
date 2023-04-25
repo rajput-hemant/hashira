@@ -5,6 +5,7 @@ import { Bookmark, PlayCircle, Star, Youtube } from "lucide-react";
 import { IAnimeResultV2, UpcomingAnimeData } from "@/types/anime";
 import { cn, getAnimeTitle } from "@/lib/utils";
 import { Button } from "../ui/button";
+import { Skeleton } from "../ui/skeleton";
 import { Small } from "../ui/topography";
 import TrailerModal from "../youtube/trailer-modal";
 
@@ -61,7 +62,7 @@ const Swipercard = ({ item, isUpcoming, className }: SwipercardProps) => {
       )}
     >
       {/* image */}
-      <div className="relative h-full w-full overflow-hidden rounded-md">
+      <div className="relative h-full overflow-hidden rounded-md">
         <Image
           src={getImage(item)}
           alt={getTitle(item)}
@@ -113,6 +114,9 @@ const Swipercard = ({ item, isUpcoming, className }: SwipercardProps) => {
             {getTitle(item).slice(0, 40)}
           </Small>
         </div>
+
+        {/* skeleton loading */}
+        <Skeleton className="bg-white/25" />
       </div>
     </Wrapper>
   );
