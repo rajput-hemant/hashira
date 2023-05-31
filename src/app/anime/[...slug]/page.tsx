@@ -9,8 +9,7 @@ import {
   Smile,
 } from "lucide-react";
 
-import { store } from "@/store";
-import { setAnimeInfo } from "@/store/anime-slice";
+import { animeStoreSelector, setAnimeInfo } from "@/store";
 import { getAnimeTitle } from "@/lib/utils";
 import EpisodeList from "@/components/anime/epidode-list";
 import InfoSidebar from "@/components/anime/info-aside";
@@ -30,7 +29,7 @@ const anilist = new META.Anilist();
 const fetchAnimeInfo = async (id: string) => {
   const anime = await anilist.fetchAnimeInfo(id);
 
-  store.dispatch(setAnimeInfo(anime));
+  setAnimeInfo(anime);
 
   return anime;
 };
@@ -51,7 +50,7 @@ const AnimeInfo = async ({ params: { slug } }: AnimeInfoProps) => {
   const title = slug[1];
 
   const anime =
-    store.getState().anime.animeInfo?.find((a) => a.id === id) ??
+    animeStoreSelector().animeInfo?.find((a) => a.id === id) ??
     (await fetchAnimeInfo(id));
 
   const hasSubDub = (() => {
@@ -133,7 +132,7 @@ const AnimeInfo = async ({ params: { slug } }: AnimeInfoProps) => {
 
         {/* anime overview & episodes tab */}
         <Tabs
-          defaultValue={TAB.Overview}
+          defaultValue={TAB.Episodes}
           className="flex h-full w-full flex-col items-center  pt-2"
         >
           <TabsList className="bg-transparent md:bg-fill-dark/75">

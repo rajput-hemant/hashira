@@ -1,22 +1,19 @@
-import { configureStore } from "@reduxjs/toolkit";
+import {
+  animeStoreSelector,
+  setAnimeInfo,
+  setPopularAnime,
+  setRecentAnime,
+  setTrendingAnime,
+  setUpcomingAnime,
+  useAnimeStore,
+} from "./anime";
 
-import animeReducer from "./anime-slice";
-import searchReducer from "./search-slice";
-
-export const store = configureStore({
-  reducer: {
-    anime: animeReducer,
-    search: searchReducer,
-  },
-
-  middleware: (getDefaultMiddleware) => {
-    return getDefaultMiddleware({
-      serializableCheck: false,
-    });
-  },
-});
-
-// https://redux.js.org/usage/usage-with-typescript#define-root-state-and-dispatch-types
-export type RootState = ReturnType<typeof store.getState>;
-
-export type AppDispatch = typeof store.dispatch;
+export {
+  animeStoreSelector,
+  setAnimeInfo,
+  setPopularAnime,
+  setRecentAnime,
+  setTrendingAnime,
+  setUpcomingAnime,
+  useAnimeStore,
+};

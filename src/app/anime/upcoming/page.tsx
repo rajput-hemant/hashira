@@ -1,8 +1,7 @@
 import { Metadata } from "next";
 
 import { UpcomingAnime } from "@/types/anime";
-import { store } from "@/store";
-import { setUpcoming } from "@/store/anime-slice";
+import { animeStoreSelector, setUpcomingAnime } from "@/store";
 import SwiperCard from "@/components/swiper/swiper-card";
 import { H1 } from "@/components/ui/topography";
 
@@ -15,7 +14,7 @@ const fetchUpcomingAnime = async () => {
   const upcoming: UpcomingAnime = await res.json();
 
   // set upcoming anime in store
-  store.dispatch(setUpcoming(upcoming));
+  setUpcomingAnime(upcoming);
 
   return upcoming;
 };
@@ -24,7 +23,7 @@ const UpcomingAnimePage = async () => {
   // get upcoming anime from store if it exists
   // otherwise fetch it
   const upcoming =
-    store.getState().anime.upcoming ?? (await fetchUpcomingAnime());
+    animeStoreSelector().upcoming ?? (await fetchUpcomingAnime());
 
   return (
     <>

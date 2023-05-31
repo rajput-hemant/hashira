@@ -6,8 +6,9 @@ import { Client } from "postmark";
 
 import { siteConfig } from "@/config/site";
 import { db } from "@/lib/db";
+import { env } from "@/lib/env.mjs";
 
-const postmarkClient = new Client(process.env.POSTMARK_API_TOKEN || "");
+const postmarkClient = new Client(env.POSTMARK_API_TOKEN);
 
 export const authOptions: AuthOptions = {
   adapter: PrismaAdapter(db),
@@ -22,12 +23,12 @@ export const authOptions: AuthOptions = {
 
   providers: [
     GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID as string,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+      clientId: env.GOOGLE_CLIENT_ID,
+      clientSecret: env.GOOGLE_CLIENT_SECRET,
     }),
 
     EmailProvider({
-      from: process.env.SMTP_FROM,
+      from: env.SMTP_FROM,
 
       sendVerificationRequest: async ({ identifier, url, provider }) => {
         const user = await db.user.findUnique({
@@ -36,8 +37,8 @@ export const authOptions: AuthOptions = {
         });
 
         const templateId = user?.emailVerified
-          ? process.env.POSTMARK_SIGN_IN_TEMPLATE
-          : process.env.POSTMARK_ACTIVATION_TEMPLATE;
+          ? env.POSTMARK_SIGN_IN_TEMPLATE
+          : env.POSTMARK_ACTIVATION_TEMPLATE;
 
         if (!templateId) {
           throw new Error("Missing template id");

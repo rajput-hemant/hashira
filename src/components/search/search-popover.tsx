@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 import useEventListener from "@/hooks/use-event-listner";
 import { SearchIcon } from "lucide-react";
 
@@ -10,6 +11,8 @@ import { H3 } from "../ui/topography";
 import SearchInput from "./search-input";
 
 const Search = () => {
+  const pathname = usePathname();
+
   const inputRef = useRef<HTMLInputElement>(null);
   const [isFocused, setIsFocused] = useState(false);
 
@@ -48,13 +51,15 @@ const Search = () => {
         </div>
       </PopoverTrigger>
 
-      <PopoverContent className="mx-2 flex h-48 w-[calc(100vw-1rem)] flex-col items-center justify-start gap-4 md:flex-row md:justify-center">
-        <div className="mx-auto flex sm:w-2/3 md:hidden">
-          <SearchInput />
-        </div>
+      {pathname !== "/search" && (
+        <PopoverContent className="mx-2 flex h-48 w-[calc(100vw-1rem)] flex-col items-center justify-start gap-4 md:flex-row md:justify-center">
+          <div className="mx-auto flex sm:w-2/3 md:hidden">
+            <SearchInput />
+          </div>
 
-        <H3>Start Searching...</H3>
-      </PopoverContent>
+          <H3>Start Searching...</H3>
+        </PopoverContent>
+      )}
     </Popover>
   );
 };

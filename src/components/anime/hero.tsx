@@ -10,7 +10,6 @@ import {
   Folder,
   Info,
   LucideIcon,
-  PlayCircle,
   Tv,
   Youtube,
 } from "lucide-react";
@@ -20,6 +19,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 import { IAnimeResultV2 } from "@/types/anime";
 import { cleanHTML, cn, getAnimeTitle } from "@/lib/utils";
+import { Icons } from "../icons";
 import { Badge } from "../ui/badge";
 import { Button, buttonVariants } from "../ui/button";
 import { Skeleton } from "../ui/skeleton";
@@ -120,13 +120,16 @@ const Hero = ({ trending }: HeroProps) => {
 
                         <div className="absolute bottom-4 flex w-full gap-2 font-bold tracking-tight md:bottom-6 md:gap-3 lg:bottom-8 lg:text-lg">
                           {/* play button */}
-                          <Button
-                            variant="green"
-                            className="h-9 gap-1 px-2 md:h-10 md:px-2 lg:h-10 lg:px-4"
+                          <Link
+                            href={`/watch/${anime.id}/${getAnimeTitle(anime)}`}
+                            className={cn(
+                              buttonVariants({ variant: "green" }),
+                              "h-9 gap-1 px-2 text-black md:h-10 lg:h-10 lg:px-4"
+                            )}
                           >
-                            <PlayCircle className="h-5 w-5 md:h-6 md:w-6" />
+                            <Icons.play className="-mt-0.5 h-4 w-4 md:-mt-1" />
                             Play
-                          </Button>
+                          </Link>
 
                           {/* youtube trailer button */}
                           <TrailerModal
@@ -134,27 +137,36 @@ const Hero = ({ trending }: HeroProps) => {
                             title={getAnimeTitle(anime)}
                           >
                             <div
-                              className={buttonVariants({
-                                variant: "destructive",
-                                className:
-                                  "h-9 gap-1 px-2 md:h-10 md:px-2 lg:h-10 lg:px-4",
-                              })}
+                              className={cn(
+                                buttonVariants(),
+                                "h-9 px-2 md:h-10 lg:h-10 lg:px-4"
+                              )}
                             >
-                              <Youtube className="h-5 w-5 md:h-6 md:w-6" />
+                              <Icons.youtube className="h-8 w-8" />
                             </div>
                           </TrailerModal>
 
                           {/* add to watchlist button */}
                           {status == "authenticated" && (
-                            <Button className="h-9 gap-1 px-2 md:h-10 md:px-2 lg:h-10 lg:px-4">
+                            <Button>
                               <Bookmark className="h-5 w-5 md:h-6 md:w-6" />
                             </Button>
                           )}
 
                           {/* more info button */}
-                          <Button className="ml-auto mr-8 h-9 gap-1 px-2 md:h-10 md:px-2 lg:mr-14 lg:h-10 lg:px-4">
+                          <Link
+                            href={`/anime/info/${anime.id}/${getAnimeTitle(
+                              anime
+                            )}`}
+                            className={cn(
+                              buttonVariants(),
+                              "ml-auto mr-8 h-9 px-2 md:h-10 lg:h-10 lg:px-4"
+                            )}
+                          >
                             <Info className="h-5 w-5 md:h-6 md:w-6" />
-                          </Button>
+                          </Link>
+                          {/* <Button className="ml-auto mr-8 h-9 gap-1 px-2 md:h-10 md:px-2 lg:mr-14 lg:h-10 lg:px-4">
+                          </Button> */}
                         </div>
                       </div>
 
@@ -206,12 +218,12 @@ const Hero = ({ trending }: HeroProps) => {
                   className="h-full rounded-lg object-cover transition-transform duration-300 group-hover:scale-110"
                 />
 
-                <Small className="absolute flex h-full w-full items-center justify-center bg-gradient-to-tr from-gray-900 to-transparent text-center font-bold">
+                <Small className="absolute flex h-full w-full items-center justify-center bg-gradient-to-tr from-gray-900 to-transparent text-center font-bold group-hover:bg-none">
                   {getAnimeTitle(anime)}
                 </Small>
 
                 {/* skeleton loading */}
-                <Skeleton />
+                <Skeleton className="absolute -z-10 bg-white/25" />
               </div>
             );
           })}

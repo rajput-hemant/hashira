@@ -1,8 +1,7 @@
 import { Metadata } from "next";
 import { META } from "@consumet/extensions";
 
-import { store } from "@/store";
-import { setTrending } from "@/store/anime-slice";
+import { animeStoreSelector, setTrendingAnime } from "@/store";
 import SwiperCard from "@/components/swiper/swiper-card";
 import { H1 } from "@/components/ui/topography";
 
@@ -16,7 +15,7 @@ const fetchTrendingAnime = async () => {
   const trending = await anilist.fetchTrendingAnime();
 
   // set trending anime in store
-  store.dispatch(setTrending(trending));
+  setTrendingAnime(trending);
 
   return trending;
 };
@@ -25,7 +24,7 @@ const RecentAnimePage = async () => {
   // get trending anime from store if it exists
   // otherwise fetch it
   const trending =
-    store.getState().anime.trending ?? (await fetchTrendingAnime());
+    animeStoreSelector().trending ?? (await fetchTrendingAnime());
 
   return (
     <>

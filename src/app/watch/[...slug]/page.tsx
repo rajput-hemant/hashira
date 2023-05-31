@@ -1,4 +1,6 @@
-import { META } from "@consumet/extensions";
+import { IEpisodeServer } from "@consumet/extensions";
+
+import ArtPlayer from "@/components/player/art-player";
 
 type WatchPageProps = {
   params: {
@@ -6,21 +8,29 @@ type WatchPageProps = {
   };
 };
 
-const anilist = new META.Anilist();
-
 const fetchEpisodes = async (id: string) => {
-  const anime = await anilist.fetchEpisodesListById(id);
+  try {
+    const response =
+      await fetch(`https://api.consumet.org/anime/gogoanime/watch/${id}
+`);
 
-  return anime;
+    const episodes = await response.json();
+
+    return episodes.sources as IEpisodeServer[];
+  } catch (error) {
+    throw error;
+  }
 };
 
-const WatchPage = ({ params: { slug } }: WatchPageProps) => {
+const WatchPage = async ({ params: { slug } }: WatchPageProps) => {
   const id = slug[0];
   const title = slug[1];
 
+  const episodes = await fetchEpisodes(title);
+
   return (
-    <div className="grid min-h-screen w-full place-items-center">
-      {id} {title}
+    <div className="flex h-screen w-full items-center justify-center">
+      <ArtPlayer url={episodes[0].url} className="aspect-video w-[800px]" />
     </div>
   );
 };

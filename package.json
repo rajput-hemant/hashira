@@ -11,7 +11,8 @@
     "preview": "next build && next start",
     "typecheck": "tsc --noEmit",
     "format:write": "prettier --write \"**/*.{ts,tsx,mdx}\" --cache",
-    "format:check": "prettier --check \"**/*.{ts,tsx,mdx}\" --cache"
+    "format:check": "prettier --check \"**/*.{ts,tsx,mdx}\" --cache",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@consumet/extensions": "^1.4.17",
@@ -30,14 +31,16 @@
     "@radix-ui/react-tabs": "^1.0.3",
     "@radix-ui/react-toast": "^1.1.3",
     "@radix-ui/react-tooltip": "^1.0.5",
-    "@reduxjs/toolkit": "^1.9.5",
+    "@t3-oss/env-nextjs": "^0.2.2",
     "@vercel/analytics": "^0.1.11",
+    "artplayer": "^5.0.4",
     "autoprefixer": "10.4.14",
     "class-variance-authority": "^0.5.1",
     "clsx": "^1.2.1",
+    "hls.js": "^1.4.0",
     "jsonwebtoken": "^9.0.0",
     "lucide-react": "^0.132.0",
-    "next": "13.3.0",
+    "next": "13.4.0",
     "next-auth": "^4.22.1",
     "nodemailer": "^6.9.1",
     "postcss": "8.4.21",
@@ -45,7 +48,6 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.43.9",
-    "react-redux": "^8.0.5",
     "react-share": "^4.4.1",
     "sharp": "^0.32.0",
     "swiper": "^9.2.0",
@@ -54,7 +56,8 @@
     "tailwindcss": "3.3.1",
     "tailwindcss-animate": "^1.0.5",
     "typescript": "5.0.4",
-    "zod": "^3.21.4"
+    "zod": "^3.21.4",
+    "zustand": "^4.3.8"
   },
   "devDependencies": {
     "@ianvs/prettier-plugin-sort-imports": "^3.7.2",
@@ -67,6 +70,8 @@
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-tailwindcss": "^3.11.0",
-    "prisma": "^4.12.0"
+    "lint-staged": "^13.2.2",
+    "prisma": "^4.12.0",
+    "husky": "^8.0.0"
   }
 }

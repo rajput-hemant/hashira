@@ -1,8 +1,7 @@
 import { Metadata } from "next";
 import { META } from "@consumet/extensions";
 
-import { store } from "@/store";
-import { setPopular } from "@/store/anime-slice";
+import { animeStoreSelector, setPopularAnime } from "@/store";
 import SwiperCard from "@/components/swiper/swiper-card";
 import { H1 } from "@/components/ui/topography";
 
@@ -17,7 +16,7 @@ const fetchPopularAnime = async () => {
   const popular = await anilist.fetchPopularAnime();
 
   // set popular anime in store
-  store.dispatch(setPopular(popular));
+  setPopularAnime(popular);
 
   return popular;
 };
@@ -25,7 +24,7 @@ const fetchPopularAnime = async () => {
 const PopularAnimePage = async () => {
   // get popular anime from store if it exists
   // otherwise fetch it
-  const popular = store.getState().anime.popular ?? (await fetchPopularAnime());
+  const popular = animeStoreSelector().popular ?? (await fetchPopularAnime());
 
   return (
     <>

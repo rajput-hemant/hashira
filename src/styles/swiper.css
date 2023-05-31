@@ -1,0 +1,8 @@
+/* swiper pagination */
+.swiper-pagination {
+  @apply absolute bottom-0 left-0 right-0 flex justify-center items-center;
+}
+
+.swiper-pagination-bullet {
+  @apply bg-rose-500 w-2.5 h-2.5;
+}

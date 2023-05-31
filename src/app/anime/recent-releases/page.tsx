@@ -1,8 +1,7 @@
 import { Metadata } from "next";
 import { META } from "@consumet/extensions";
 
-import { store } from "@/store";
-import { setRecent } from "@/store/anime-slice";
+import { animeStoreSelector, setRecentAnime } from "@/store";
 import SwiperCard from "@/components/swiper/swiper-card";
 import { H1 } from "@/components/ui/topography";
 
@@ -16,15 +15,14 @@ const fetchPopularAnime = async () => {
   const recent = await anilist.fetchRecentEpisodes();
 
   // set recent anime in store
-  store.dispatch(setRecent(recent));
-
+  setRecentAnime(recent);
   return recent;
 };
 
 const RecentAnimePage = async () => {
   // get recent anime from store if it exists
   // otherwise fetch it
-  const recent = store.getState().anime.recent ?? (await fetchPopularAnime());
+  const recent = animeStoreSelector().recent ?? (await fetchPopularAnime());
 
   return (
     <>

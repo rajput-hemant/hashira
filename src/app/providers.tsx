@@ -2,9 +2,7 @@
 
 import { Analytics } from "@vercel/analytics/react";
 import { SessionProvider } from "next-auth/react";
-import { Provider } from "react-redux";
 
-import { store } from "@/store";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 
@@ -16,9 +14,7 @@ const Providers = ({ children }: ProviderProps) => {
   return (
     <>
       <SessionProvider>
-        <Provider store={store}>
-          <TooltipProvider>{children}</TooltipProvider>
-        </Provider>
+        <TooltipProvider>{children}</TooltipProvider>
       </SessionProvider>
 
       <Toaster />

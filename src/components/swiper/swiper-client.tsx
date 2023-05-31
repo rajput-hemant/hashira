@@ -24,6 +24,7 @@ import { Skeleton } from "../ui/skeleton";
 import Swipercard from "./swiper-card";
 import "swiper/css/pagination";
 import "swiper/swiper.min.css";
+import "@/styles/swiper.css";
 
 type SwiperClientProps = {
   items: ISearch<IAnimeResultV2> | UpcomingAnime;
@@ -37,6 +38,7 @@ const SwiperClient = ({ items, isUpcoming }: SwiperClientProps) => {
   const isClient = useIsClient();
   const {
     windowDimension: { winWidth },
+    isMobile,
   } = useWindowSize();
 
   const data = (() => {
@@ -88,7 +90,7 @@ const SwiperClient = ({ items, isUpcoming }: SwiperClientProps) => {
           slidesPerView={slideCount}
           spaceBetween={spaceBetween}
           slidesPerGroup={slidesPerGroup}
-          modules={[Pagination, Keyboard, Mousewheel]}
+          modules={[Pagination, Keyboard, ...(isMobile ? [] : [Mousewheel])]}
           mousewheel
           keyboard
           grabCursor
@@ -98,7 +100,7 @@ const SwiperClient = ({ items, isUpcoming }: SwiperClientProps) => {
           {data.map((item) => (
             <SwiperSlide
               key={getId(item)}
-              className="h-full rounded-md lg:w-48"
+              className="h-full rounded-md py-2 lg:w-48"
             >
               <Swipercard item={item} isUpcoming={isUpcoming} />
               {/*
@@ -118,7 +120,7 @@ const SwiperClient = ({ items, isUpcoming }: SwiperClientProps) => {
                         <Loader2 className="flex w-full animate-spin items-center justify-center" />
                       }
                     >
-                      @ts-ignore // comment this line 
+                      @ts-ignore // comment this line
                       <AnimeInfoCard id={getId(item)} />
                     </Suspense>
                   </HoverCardContent>

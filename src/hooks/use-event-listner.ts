@@ -1,6 +1,6 @@
 import { RefObject, useEffect, useRef } from "react";
 
-import { useIsomorphicLayoutEffect } from "./use-isomorphic-layout-effect";
+import { useIsomorphicLayoutEffect } from ".";
 
 /**
  * https://usehooks-ts.com/react-hook/use-event-listener

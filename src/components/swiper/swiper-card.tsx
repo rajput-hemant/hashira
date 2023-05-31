@@ -1,9 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Bookmark, PlayCircle, Star, Youtube } from "lucide-react";
+import { Bookmark, Star } from "lucide-react";
 
 import { IAnimeResultV2, UpcomingAnimeData } from "@/types/anime";
 import { cn, getAnimeTitle } from "@/lib/utils";
+import { Icons } from "../icons";
 import { Button } from "../ui/button";
 import { Skeleton } from "../ui/skeleton";
 import { Small } from "../ui/topography";
@@ -21,7 +22,7 @@ const Swipercard = ({ item, isUpcoming, className }: SwipercardProps) => {
   const getHref = (item: Item) => {
     const anime = item as IAnimeResultV2;
 
-    return `/anime/info/${anime.id}/${getAnimeTitle(anime)
+    return `/anime/${anime.id}/${getAnimeTitle(anime)
       .toLowerCase()
       .replace(/[^\w\s]/gi, "")
       .replaceAll(" ", "-")}`;
@@ -99,10 +100,10 @@ const Swipercard = ({ item, isUpcoming, className }: SwipercardProps) => {
               id={(item as UpcomingAnimeData).trailer.youtube_id ?? ""}
               title={getTitle(item).slice(0, 40)}
             >
-              <Youtube className="hidden h-10 w-10 rounded-full bg-red-500 p-2 group-hover:flex" />
+              <Icons.youtube className="invisible h-10 group-hover:visible" />
             </TrailerModal>
           ) : (
-            <PlayCircle className="invisible h-10 w-10 rounded-full bg-rose-500 p-2 fade-in group-hover:visible" />
+            <Icons.play className="invisible h-8 w-8 text-white/75 group-hover:visible" />
           )}
 
           <Small
@@ -134,7 +135,7 @@ const Wrapper = ({ isUpcoming, href, children, className }: WrapperProps) => {
   return isUpcoming ? (
     <div className={className}>{children}</div>
   ) : (
-    <Link href={{ pathname: href }} className={className}>
+    <Link href={href} className={className}>
       {children}
     </Link>
   );

@@ -73,11 +73,11 @@ const EpisodeList = ({ id, items = [], mode }: EpisodeListProps) => {
 
               {/* episode info */}
               <div className="flex w-full flex-col p-2">
-                <p className="truncate font-bold sm:text-lg md:text-xl lg:text-2xl">
+                <p className="line-clamp-1 font-bold sm:text-lg md:text-xl lg:text-2xl">
                   {episode.title ?? ""}
                 </p>
 
-                <p className="line-clamp-3 text-xs leading-4 sm:line-clamp-5 sm:text-sm sm:leading-4 md:line-clamp-6 md:leading-4">
+                <p className="line-clamp-3 text-xs leading-4 text-fill-light sm:line-clamp-4 sm:leading-5 md:text-base">
                   {episode.description ?? ""}
                 </p>
               </div>

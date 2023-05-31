@@ -1,7 +1,6 @@
 import { useState } from "react";
 
-import useEventListener from "./use-event-listner";
-import { useIsomorphicLayoutEffect } from "./use-isomorphic-layout-effect";
+import { useEventListener, useIsomorphicLayoutEffect } from ".";
 
 const useWindowSize = () => {
   /**

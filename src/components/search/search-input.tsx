@@ -1,24 +1,20 @@
 "use client";
 
 import { forwardRef } from "react";
-import { useAppDispatch } from "@/hooks/use-app-dispatch";
-import { useAppSelector } from "@/hooks/use-app-selector";
+import { useSearch } from "@/hooks";
 import { SearchIcon } from "lucide-react";
 
-import { setSearch } from "@/store/search-slice";
 import { Input } from "../ui/input";
 
 const SearchInput = forwardRef<HTMLInputElement>(({ ...props }, ref) => {
-  const dispatch = useAppDispatch();
-
-  const search = useAppSelector((state) => state.search.query);
+  const { query, setQuery } = useSearch();
 
   return (
     <Input
       ref={ref}
       icon={SearchIcon}
-      value={search}
-      onChange={(e) => dispatch(setSearch(e.target.value))}
+      value={query}
+      onChange={(e) => setQuery(e.target.value)}
       placeholder="Search title, movies, shows..."
       className="h-10 border-none"
       {...props}

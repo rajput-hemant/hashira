@@ -1,6 +1,6 @@
 import React from "react";
 
-export const useNetwork = () => {
+const useNetwork = () => {
   const [isOnline, setNetwork] = React.useState(true);
 
   const updateNetwork = () => {
@@ -21,3 +21,5 @@ export const useNetwork = () => {
 
   return isOnline;
 };
+
+export default useNetwork;

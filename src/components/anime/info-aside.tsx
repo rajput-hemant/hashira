@@ -96,11 +96,6 @@ const InfoSidebar = ({ anime }: InfoSidebarProps) => {
       </div>
 
       <div>
-        <Small>Genres</Small>
-        <Subtle>{anime.countryOfOrigin}</Subtle>
-      </div>
-
-      <div>
         <Small>Synonyms</Small>
         <Subtle>{createList(anime.synonyms)}</Subtle>
       </div>
