@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json.schemastore.org/web-manifest-combined.json",
+  "name": "hashira",
+  "short_name": "Hashira",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#fff",
+  "description": "Ad-free Anime & Manga Streaming web app with a vast library of movies and TV shows, allowing users to easily search and create watchlists."
+}
