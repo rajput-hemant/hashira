@@ -1,33 +1,22 @@
-import { Metadata } from "next";
+import { poppins } from "@/lib/fonts";
+import { cn } from "@/lib/utils";
+import { Providers } from "@/components/providers";
+import { TailwindIndicator } from "@/components/tailwind-indicator";
 
-import { siteConfig } from "@/config/site";
-import { overpass } from "@/lib/fonts";
-import Footer from "@/components/footer";
-import BottomNav from "@/components/navbar/bottom-nav";
-import Navbar from "@/components/navbar/navbar";
-import Providers from "./providers";
 import "@/styles/globals.css";
 
-export const metadata: Metadata = {
-  title: siteConfig.name,
-  description: siteConfig.description,
+export const metadata = {
+  title: "Next.js + TypeScript Starter",
+  description: "A starter template for Next.js and TypeScript",
 };
 
-interface RootLayoutProps {
-  children: React.ReactNode;
-}
-
-const RootLayout = ({ children }: RootLayoutProps) => {
+const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${overpass.className} bg-fill-box text-white`}>
-        <Providers>
-          <Navbar />
-          <BottomNav />
+      <body className={cn(poppins.className, "scroll-smooth antialiased")}>
+        <Providers>{children}</Providers>
 
-          {children}
-        </Providers>
-        <Footer />
+        <TailwindIndicator />
       </body>
     </html>
   );

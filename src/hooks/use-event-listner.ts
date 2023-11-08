@@ -1,10 +1,9 @@
-import { RefObject, useEffect, useRef } from "react";
+/* eslint-disable no-unused-vars */
+import { useEffect, useRef } from "react";
+import type { RefObject } from "react";
 
-import { useIsomorphicLayoutEffect } from ".";
+import { useIsomorphicLayoutEffect } from "./use-isomorphic-layout-effect";
 
-/**
- * https://usehooks-ts.com/react-hook/use-event-listener
- */
 // MediaQueryList Event based useEventListener interface
 function useEventListener<K extends keyof MediaQueryListEventMap>(
   eventName: K,
@@ -24,7 +23,7 @@ function useEventListener<K extends keyof WindowEventMap>(
 // Element Event based useEventListener interface
 function useEventListener<
   K extends keyof HTMLElementEventMap,
-  T extends HTMLElement = HTMLDivElement
+  T extends HTMLElement = HTMLDivElement,
 >(
   eventName: K,
   handler: (event: HTMLElementEventMap[K]) => void,
@@ -40,11 +39,14 @@ function useEventListener<K extends keyof DocumentEventMap>(
   options?: boolean | AddEventListenerOptions
 ): void;
 
+/**
+ * @see https://usehooks-ts.com/react-hook/use-event-listener
+ */
 function useEventListener<
   KW extends keyof WindowEventMap,
   KH extends keyof HTMLElementEventMap,
   KM extends keyof MediaQueryListEventMap,
-  T extends HTMLElement | MediaQueryList | void = void
+  T extends HTMLElement | MediaQueryList | void = void,
 >(
   eventName: KW | KH | KM,
   handler: (
@@ -82,4 +84,4 @@ function useEventListener<
   }, [eventName, element, options]);
 }
 
-export default useEventListener;
+export { useEventListener };

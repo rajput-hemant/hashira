@@ -1,9 +1,7 @@
 import { useEffect, useLayoutEffect } from "react";
 
 /**
- * https://usehooks-ts.com/react-hook/use-isomorphic-layout-effect
+ * @see https://usehooks-ts.com/react-hook/use-isomorphic-layout-effect
  */
-const useIsomorphicLayoutEffect =
+export const useIsomorphicLayoutEffect =
   typeof window !== "undefined" ? useLayoutEffect : useEffect;
-
-export default useIsomorphicLayoutEffect;
