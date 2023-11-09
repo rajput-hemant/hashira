@@ -1,4 +1,4 @@
-import type { ClassValue} from "clsx";
+import type { ClassValue } from "clsx";
 import { clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -10,3 +10,12 @@ import { twMerge } from "tailwind-merge";
 export const cn = (...inputs: ClassValue[]) => {
   return twMerge(clsx(inputs));
 };
+
+/**
+ * Parses a boolean value from a string
+ * @param value The value to parse
+ * @returns The parsed boolean value
+ */
+export function parseBool(value: string | number) {
+  return ["true", "1"].includes(`${value}`.toLowerCase().trim());
+}

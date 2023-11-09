@@ -13,7 +13,7 @@
     "@next/next/no-html-link-for-pages": "off",
     "react/jsx-key": "warn",
     "tailwindcss/no-custom-classname": "off",
-    "tailwindcss/classnames-order": "error",
+    "tailwindcss/classnames-order": "warn",
     "@typescript-eslint/consistent-type-imports": "warn",
     "@typescript-eslint/no-unused-vars": [
       "warn",
@@ -27,7 +27,7 @@
   "settings": {
     "tailwindcss": {
       "callees": ["cn"],
-      "config": "tailwind.config.js"
+      "config": "tailwind.config.ts"
     },
     "next": { "rootDir": true }
   },
