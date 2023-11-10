@@ -1,7 +1,8 @@
-import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 import { Ratelimit } from "@upstash/ratelimit";
 import { Redis } from "@upstash/redis";
+import { getToken } from "next-auth/jwt";
+import { withAuth } from "next-auth/middleware";
 
 import { env } from "./lib/env.mjs";
 
@@ -10,27 +11,53 @@ const ratelimit = new Ratelimit({
   limiter: Ratelimit.slidingWindow(env.RATE_LIMITING_REQUESTS_PER_SECOND, "1s"),
 });
 
-export async function middleware(req: NextRequest) {
-  if (env.ENABLE_RATE_LIMITING || env.NODE_ENV === "production") {
-    const id = req.ip ?? "anonymous";
-    const { limit, pending, remaining, reset, success } = await ratelimit.limit(
-      id ?? "anonymous"
-    );
-    if (!success) {
-      return NextResponse.json(
-        {
-          error: {
-            message: "Too many requests",
-            limit,
-            pending,
-            remaining,
-            reset,
-          },
-        },
-        { status: 429, headers: { "Content-Type": "application/json" } }
-      );
-    }
-  }
+export default withAuth(
+  async function middleware(req) {
+    /* -----------------------------------------------------------------------------------------------
+     * Rate Limiting
+     * -----------------------------------------------------------------------------------------------*/
 
-  return NextResponse.next();
-}
+    if (env.ENABLE_RATE_LIMITING && env.NODE_ENV === "production") {
+      const id = req.ip ?? "anonymous";
+      const { limit, pending, remaining, reset, success } =
+        await ratelimit.limit(id ?? "anonymous");
+      if (!success) {
+        return NextResponse.json(
+          {
+            error: {
+              message: "Too many requests",
+              limit,
+              pending,
+              remaining,
+              reset,
+            },
+          },
+          { status: 429 }
+        );
+      }
+    }
+
+    /* -----------------------------------------------------------------------------------------------
+     * Auth
+     * -----------------------------------------------------------------------------------------------*/
+
+    const pathname = req.nextUrl.pathname;
+
+    const isAuth = await getToken({ req });
+
+    if (isAuth) {
+      if (["/", "/login", "/signup", "/reset-password"].includes(pathname)) {
+        return NextResponse.redirect(new URL("/anime", req.url));
+      }
+    }
+
+    return NextResponse.next();
+  },
+  {
+    callbacks: {
+      async authorized() {
+        return true;
+      },
+    },
+  }
+);

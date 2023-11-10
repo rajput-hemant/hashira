@@ -1,10 +1,10 @@
 import "@/styles/globals.css";
 
 import type { Metadata, Viewport } from "next";
-import Image from "next/image";
 import { Providers } from "@/app/providers";
 
 import { siteConfig } from "@/config/site";
+import { getUser } from "@/lib/auth";
 import {
   fontInter,
   fontMono,
@@ -58,7 +58,9 @@ type RootLayoutProps = {
   children: React.ReactNode;
 };
 
-export default function RootLayout({ modal, children }: RootLayoutProps) {
+export default async function RootLayout({ modal, children }: RootLayoutProps) {
+  const user = await getUser();
+
   return (
     <html dir="ltr" lang="en" suppressHydrationWarning>
       <head />
@@ -74,18 +76,11 @@ export default function RootLayout({ modal, children }: RootLayoutProps) {
           "font-overpass"
         )}
       >
-        {/* backgrounds */}
-        <DotPattern className="pointer-events-none !fixed opacity-50 [mask-image:radial-gradient(600px_circle_at_center,white,transparent)]" />
-        <Image
-          alt="docs left background"
-          fill
-          src="/images/gradients/gradient-2.png"
-          className="!fixed hidden dark:block"
-        />
+        <DotPattern className="pointer-events-none !fixed opacity-50 [mask-image:radial-gradient(800px_circle_at_center,white,transparent)]" />
 
         <Providers className="flex min-h-screen flex-col">
-          <Navbar />
-          <div className="z-[1] flex-1">{children}</div>
+          <Navbar user={user} />
+          <div className="z-0 flex-1">{children}</div>
           <Footer />
 
           {modal}

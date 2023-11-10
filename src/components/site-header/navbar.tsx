@@ -1,8 +1,17 @@
 "use client";
 
 import React from "react";
+import NextLink from "next/link";
 import { usePathname } from "next/navigation";
+import { Avatar } from "@nextui-org/avatar";
 import { Button } from "@nextui-org/button";
+import {
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownSection,
+  DropdownTrigger,
+} from "@nextui-org/dropdown";
 import { Link } from "@nextui-org/link";
 import {
   NavbarBrand,
@@ -13,9 +22,13 @@ import {
   NavbarMenuToggle,
   Navbar as NavbarUi,
 } from "@nextui-org/navbar";
+import type { User } from "next-auth";
+import { signOut } from "next-auth/react";
+import { toast } from "sonner";
 
 import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
+import { LogOut, Profile, Settings } from "../icons";
 import { ThemeToggle } from "../theme-toggle";
 
 const menuItems = [
@@ -26,18 +39,29 @@ const menuItems = [
   { name: "Top Airing", href: "/top-airing" },
 ];
 
-export function Navbar() {
+type NavbarProps = {
+  user?: User;
+};
+
+export function Navbar({ user }: NavbarProps) {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
+  const iconClasses =
+    "text-xl text-default-500 pointer-events-none flex-shrink-0";
+
   return (
-    <NavbarUi isBlurred maxWidth="xl" onMenuOpenChange={setIsMenuOpen}>
+    <NavbarUi maxWidth="xl" onMenuOpenChange={setIsMenuOpen}>
       <NavbarContent justify="start">
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           className="sm:hidden"
         />
-        <NavbarBrand className="items-center text-xl font-bold lowercase">
+        <NavbarBrand
+          as={Link}
+          href="/"
+          className="items-center text-xl font-bold lowercase text-foreground"
+        >
           <span>{siteConfig.name}</span>
           <span className="text-primary-500">.</span>
         </NavbarBrand>
@@ -49,10 +73,11 @@ export function Navbar() {
           return (
             <NavbarItem key={name} isActive={isActive}>
               <Link
+                as={NextLink}
                 href={href}
                 color="foreground"
                 className={cn(
-                  "text-foreground-500",
+                  "text-sm text-foreground-500",
                   isActive && "text-foreground"
                 )}
               >
@@ -65,16 +90,75 @@ export function Navbar() {
 
       <NavbarContent as="div" justify="end">
         <ThemeToggle variant="flat" />
-        <Button
-          as={Link}
-          href="/login"
-          color="primary"
-          variant="flat"
-          className="font-bold"
-        >
-          Login
-        </Button>
+        {user ? (
+          <Dropdown placement="bottom-end" shadow="lg">
+            <DropdownTrigger>
+              <Avatar
+                isBordered
+                as="button"
+                src={user?.image ?? ""}
+                name={user?.name ?? "Anonymous"}
+                size="sm"
+                color="secondary"
+                className="transition-transform"
+                fallback={user?.name?.charAt(0) ?? "?"}
+              />
+            </DropdownTrigger>
+
+            <DropdownMenu aria-label="Profile Actions" variant="flat">
+              <DropdownSection title="Profile" showDivider>
+                <DropdownItem key="profile" className="h-14 gap-2">
+                  <p className="font-semibold">{user?.name}</p>
+                  <p className="text-xs font-medium text-default-500 ">
+                    {user?.email ?? "Anonymous"}
+                  </p>
+                </DropdownItem>
+              </DropdownSection>
+
+              <DropdownSection>
+                <DropdownItem
+                  key="account"
+                  startContent={<Profile size={16} className={iconClasses} />}
+                >
+                  My Account
+                </DropdownItem>
+                <DropdownItem
+                  key="settings"
+                  startContent={<Settings size={16} className={iconClasses} />}
+                >
+                  Settings
+                </DropdownItem>
+                <DropdownItem
+                  key="logout"
+                  color="danger"
+                  onClick={() => {
+                    toast.loading("Logging out...");
+                    signOut().then(() => {
+                      toast.dismiss();
+                      toast.success("Logged out!");
+                    });
+                  }}
+                  startContent={<LogOut size={16} className={iconClasses} />}
+                >
+                  Log Out
+                </DropdownItem>
+              </DropdownSection>
+            </DropdownMenu>
+          </Dropdown>
+        ) : (
+          <Button
+            as={Link}
+            href={pathname === "/login" ? "/signup" : "/login"}
+            color="primary"
+            variant="flat"
+            className="font-bold"
+          >
+            {pathname === "/login" ? "Sign Up" : "Login"}
+          </Button>
+        )}
       </NavbarContent>
+
+      {/* for small devices */}
       <NavbarMenu>
         {menuItems.map(({ name, href }) => {
           const isActive = pathname.startsWith(href);
@@ -82,6 +166,7 @@ export function Navbar() {
           return (
             <NavbarMenuItem key={name} isActive={isActive}>
               <Link
+                as={NextLink}
                 href={href}
                 color="foreground"
                 className={cn(

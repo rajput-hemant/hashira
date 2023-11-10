@@ -5,6 +5,8 @@ import { NextUIProvider } from "@nextui-org/system";
 import { ThemeProvider } from "next-themes";
 import type { ThemeProviderProps } from "next-themes/dist/types";
 
+import { Toaster } from "@/components/toaster";
+
 type ProviderProps = {
   theme?: ThemeProviderProps;
   children: React.ReactNode;
@@ -24,6 +26,8 @@ export function Providers({ children, theme, className }: ProviderProps) {
         {...theme}
       >
         {children}
+
+        <Toaster />
       </ThemeProvider>
     </NextUIProvider>
   );

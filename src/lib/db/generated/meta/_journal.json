@@ -1,0 +1,20 @@
+{
+  "version": "5",
+  "dialect": "pg",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1699593338422,
+      "tag": "0000_motionless_surge",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1699624470677,
+      "tag": "0001_rapid_miek",
+      "breakpoints": true
+    }
+  ]
+}

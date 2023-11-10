@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@nextui-org/button";
 import { Chip } from "@nextui-org/chip";
@@ -57,6 +58,13 @@ export default function App() {
           </Button>
         </div>
       </div>
+
+      <Image
+        src="/images/gradients/gradient-2.png"
+        alt="Gradient background"
+        fill
+        className="!fixed z-[-1] hidden dark:block"
+      />
     </section>
   );
 }
