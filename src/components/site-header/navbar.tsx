@@ -1,62 +1,56 @@
 "use client";
 
 import React from "react";
-import NextLink from "next/link";
-import { usePathname } from "next/navigation";
-import { Avatar } from "@nextui-org/avatar";
 import { Button } from "@nextui-org/button";
-import {
-  Dropdown,
-  DropdownItem,
-  DropdownMenu,
-  DropdownSection,
-  DropdownTrigger,
-} from "@nextui-org/dropdown";
+import { Kbd } from "@nextui-org/kbd";
 import { Link } from "@nextui-org/link";
 import {
   NavbarBrand,
   NavbarContent,
   NavbarItem,
-  NavbarMenu,
-  NavbarMenuItem,
   NavbarMenuToggle,
-  Navbar as NavbarUi,
+  Navbar as NavbarUI,
 } from "@nextui-org/navbar";
+import { SearchLinearIcon } from "@nextui-org/shared-icons";
+import { isAppleDevice } from "@react-aria/utils";
 import type { User } from "next-auth";
-import { signOut } from "next-auth/react";
-import { toast } from "sonner";
 
+import { useCmdkStore } from "@/stores/cmdk-store";
 import { siteConfig } from "@/config/site";
-import { cn } from "@/lib/utils";
-import { LogOut, Profile, Settings } from "../icons";
+import { Download, Globe } from "../icons";
 import { ThemeToggle } from "../theme-toggle";
-
-const menuItems = [
-  { name: "Home", href: "/" },
-  { name: "Movies", href: "/movies" },
-  { name: "TV Series", href: "/tv-series" },
-  { name: "Most Popular", href: "/most-popular" },
-  { name: "Top Airing", href: "/top-airing" },
-];
+import { UserDropdown } from "./user-dropdown";
 
 type NavbarProps = {
   user?: User;
 };
 
 export function Navbar({ user }: NavbarProps) {
-  const pathname = usePathname();
+  const [cmdkKey, setCmdkKey] = React.useState<"ctrl" | "command">("ctrl");
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const cmdkStore = useCmdkStore();
 
-  const iconClasses =
-    "text-xl text-default-500 pointer-events-none flex-shrink-0";
+  React.useEffect(() => {
+    setCmdkKey(isAppleDevice() ? "command" : "ctrl");
+  }, []);
+
+  const handleOpenCmdk = () => {
+    cmdkStore.onOpen();
+  };
 
   return (
-    <NavbarUi maxWidth="xl" onMenuOpenChange={setIsMenuOpen}>
-      <NavbarContent justify="start">
-        <NavbarMenuToggle
-          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          className="sm:hidden"
-        />
+    <NavbarUI
+      maxWidth="full"
+      className="justify-end"
+      onMenuOpenChange={setIsMenuOpen}
+    >
+      {/* for small devices */}
+      <NavbarMenuToggle
+        aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+        className="hidden sm:flex lg:hidden"
+      />
+
+      <NavbarContent className="xl:hidden">
         <NavbarBrand
           as={Link}
           href="/"
@@ -67,119 +61,80 @@ export function Navbar({ user }: NavbarProps) {
         </NavbarBrand>
       </NavbarContent>
 
-      <NavbarContent className="hidden sm:flex">
-        {menuItems.map(({ name, href }) => {
-          const isActive = pathname.startsWith(href);
-          return (
-            <NavbarItem key={name} isActive={isActive}>
-              <Link
-                as={NextLink}
-                href={href}
-                color="foreground"
-                className={cn(
-                  "text-sm text-foreground-500",
-                  isActive && "text-foreground"
-                )}
-              >
-                {name}
-              </Link>
-            </NavbarItem>
-          );
-        })}
-      </NavbarContent>
-
-      <NavbarContent as="div" justify="end">
-        <ThemeToggle variant="flat" />
-        {user ? (
-          <Dropdown placement="bottom-end" shadow="lg">
-            <DropdownTrigger>
-              <Avatar
-                isBordered
-                as="button"
-                src={user?.image ?? ""}
-                name={user?.name ?? "Anonymous"}
-                size="sm"
-                color="secondary"
-                className="transition-transform"
-                fallback={user?.name?.charAt(0) ?? "?"}
-              />
-            </DropdownTrigger>
-
-            <DropdownMenu aria-label="Profile Actions" variant="flat">
-              <DropdownSection title="Profile" showDivider>
-                <DropdownItem key="profile" className="h-14 gap-2">
-                  <p className="font-semibold">{user?.name}</p>
-                  <p className="text-xs font-medium text-default-500 ">
-                    {user?.email ?? "Anonymous"}
-                  </p>
-                </DropdownItem>
-              </DropdownSection>
-
-              <DropdownSection>
-                <DropdownItem
-                  key="account"
-                  startContent={<Profile size={16} className={iconClasses} />}
-                >
-                  My Account
-                </DropdownItem>
-                <DropdownItem
-                  key="settings"
-                  startContent={<Settings size={16} className={iconClasses} />}
-                >
-                  Settings
-                </DropdownItem>
-                <DropdownItem
-                  key="logout"
-                  color="danger"
-                  onClick={() => {
-                    toast.loading("Logging out...");
-                    signOut().then(() => {
-                      toast.dismiss();
-                      toast.success("Logged out!");
-                    });
-                  }}
-                  startContent={<LogOut size={16} className={iconClasses} />}
-                >
-                  Log Out
-                </DropdownItem>
-              </DropdownSection>
-            </DropdownMenu>
-          </Dropdown>
-        ) : (
+      <NavbarContent justify="end" className="gap-2">
+        {/* for small devices */}
+        <NavbarItem className="sm:hidden">
           <Button
-            as={Link}
-            href={pathname === "/login" ? "/signup" : "/login"}
-            color="primary"
+            title={`Search (${cmdkKey === "command" ? "⌘" : "Ctrl"}+K)`}
+            aria-label={`Search (${cmdkKey === "command" ? "⌘" : "Ctrl"}+K)`}
+            isIconOnly
             variant="flat"
-            className="font-bold"
+            onPress={handleOpenCmdk}
           >
-            {pathname === "/login" ? "Sign Up" : "Login"}
+            <SearchLinearIcon
+              strokeWidth={2}
+              className="pointer-events-none shrink-0 text-base text-default-400"
+            />
           </Button>
-        )}
-      </NavbarContent>
+        </NavbarItem>
 
-      {/* for small devices */}
-      <NavbarMenu>
-        {menuItems.map(({ name, href }) => {
-          const isActive = pathname.startsWith(href);
-
-          return (
-            <NavbarMenuItem key={name} isActive={isActive}>
-              <Link
-                as={NextLink}
-                href={href}
-                color="foreground"
-                className={cn(
-                  "text-foreground-500",
-                  isActive && "text-foreground"
-                )}
+        {/* for large devices */}
+        <NavbarItem className="hidden sm:flex">
+          <Button
+            title={`Search (${cmdkKey === "command" ? "⌘" : "Ctrl"}+K)`}
+            aria-label={`Search (${cmdkKey === "command" ? "⌘" : "Ctrl"}+K)`}
+            variant="flat"
+            onPress={handleOpenCmdk}
+            className="justify-normal text-sm font-normal text-default-500 sm:w-64"
+            startContent={
+              <SearchLinearIcon
+                strokeWidth={2}
+                className="pointer-events-none shrink-0 text-base text-default-400"
+              />
+            }
+            endContent={
+              <Kbd
+                keys={cmdkKey}
+                className="ml-auto hidden px-2 py-0.5 lg:inline-block"
               >
-                {name}
-              </Link>
-            </NavbarMenuItem>
-          );
-        })}
-      </NavbarMenu>
-    </NavbarUi>
+                K
+              </Kbd>
+            }
+          >
+            Type to Search...
+          </Button>
+        </NavbarItem>
+
+        <NavbarItem className="hidden md:flex">
+          <Button
+            title="Language"
+            aria-label="Language"
+            isIconOnly
+            variant="flat"
+          >
+            <Globe size={20} />
+          </Button>
+        </NavbarItem>
+
+        <NavbarItem className="hidden md:flex">
+          <Button
+            title="Downloads"
+            aria-label="Downloads"
+            isIconOnly
+            variant="flat"
+          >
+            <Download size={20} />
+          </Button>
+        </NavbarItem>
+
+        <NavbarItem className="hidden md:flex">
+          <ThemeToggle variant="flat" />
+        </NavbarItem>
+
+        <NavbarItem className="ml-1 hidden md:flex">
+          <UserDropdown user={user} />
+        </NavbarItem>
+      </NavbarContent>
+    </NavbarUI>
   );
 }

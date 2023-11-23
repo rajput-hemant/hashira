@@ -47,7 +47,7 @@ export default withAuth(
 
     if (isAuth) {
       if (["/", "/login", "/signup", "/reset-password"].includes(pathname)) {
-        return NextResponse.redirect(new URL("/anime", req.url));
+        return NextResponse.redirect(new URL("/home", req.url));
       }
     }
 

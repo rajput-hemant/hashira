@@ -1,8 +1,9 @@
 import { nextui } from "@nextui-org/theme";
+import { withTV } from "tailwind-variants/transformer";
 import type { Config } from "tailwindcss";
 import { fontFamily } from "tailwindcss/defaultTheme";
 
-const config = {
+const config = withTV({
   darkMode: "class",
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -73,6 +74,6 @@ const config = {
     },
   },
   plugins: [nextui()],
-} satisfies Config;
+}) satisfies Config;
 
 export default config;

@@ -23,40 +23,6 @@ export const Logo = ({ size = 24, width, height, ...props }: IconProps) => (
   </svg>
 );
 
-export const Sun = ({ size = 24, width, height, ...props }: IconProps) => (
-  <svg
-    aria-hidden="true"
-    focusable="false"
-    height={size || height}
-    role="presentation"
-    viewBox="0 0 24 24"
-    width={size || width}
-    {...props}
-  >
-    <g fill="currentColor">
-      <path d="M19 12a7 7 0 11-7-7 7 7 0 017 7z" />
-      <path d="M12 22.96a.969.969 0 01-1-.96v-.08a1 1 0 012 0 1.038 1.038 0 01-1 1.04zm7.14-2.82a1.024 1.024 0 01-.71-.29l-.13-.13a1 1 0 011.41-1.41l.13.13a1 1 0 010 1.41.984.984 0 01-.7.29zm-14.28 0a1.024 1.024 0 01-.71-.29 1 1 0 010-1.41l.13-.13a1 1 0 011.41 1.41l-.13.13a1 1 0 01-.7.29zM22 13h-.08a1 1 0 010-2 1.038 1.038 0 011.04 1 .969.969 0 01-.96 1zM2.08 13H2a1 1 0 010-2 1.038 1.038 0 011.04 1 .969.969 0 01-.96 1zm16.93-7.01a1.024 1.024 0 01-.71-.29 1 1 0 010-1.41l.13-.13a1 1 0 011.41 1.41l-.13.13a.984.984 0 01-.7.29zm-14.02 0a1.024 1.024 0 01-.71-.29l-.13-.14a1 1 0 011.41-1.41l.13.13a1 1 0 010 1.41.97.97 0 01-.7.3zM12 3.04a.969.969 0 01-1-.96V2a1 1 0 012 0 1.038 1.038 0 01-1 1.04z" />
-    </g>
-  </svg>
-);
-
-export const Moon = ({ size = 24, width, height, ...props }: IconProps) => (
-  <svg
-    aria-hidden="true"
-    focusable="false"
-    height={size || height}
-    role="presentation"
-    viewBox="0 0 24 24"
-    width={size || width}
-    {...props}
-  >
-    <path
-      d="M20.742,13.045c-0.677,0.18-1.376,0.271-2.077,0.271c-2.135,0-4.14-0.83-5.646-2.336c-2.008-2.008-2.799-4.967-2.064-7.723 c0.092-0.345-0.007-0.713-0.259-0.965C10.444,2.04,10.077,1.938,9.73,2.034C8.028,2.489,6.476,3.382,5.241,4.616 c-3.898,3.898-3.898,10.243,0,14.143c1.889,1.889,4.401,2.93,7.072,2.93c2.671,0,5.182-1.04,7.07-2.929 c1.236-1.237,2.13-2.791,2.583-4.491c0.092-0.345-0.008-0.713-0.26-0.965C21.454,13.051,21.085,12.951,20.742,13.045z M17.97,17.346c-1.511,1.511-3.52,2.343-5.656,2.343c-2.137,0-4.146-0.833-5.658-2.344c-3.118-3.119-3.118-8.195,0-11.314 c0.602-0.602,1.298-1.102,2.06-1.483c-0.222,2.885,0.814,5.772,2.89,7.848c2.068,2.069,4.927,3.12,7.848,2.891 C19.072,16.046,18.571,16.743,17.97,17.346z"
-      fill="currentColor"
-    />
-  </svg>
-);
-
 export const Google = ({ size = 24, width, height, ...props }: IconProps) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -301,5 +267,409 @@ export const LogOut = ({ size = 24, width, height, ...props }: IconProps) => (
       d="m9.89535 11.2301c-.4375 0-.78343.34-.78343.77 0 .42.34593.77.78343.77h6.10465v4.78c0 2.45-2.0247 4.45-4.5276 4.45h-4.95496c-2.49273 0-4.51744-1.99-4.51744-4.44v-11.10998c0-2.46 2.03488-4.45 4.52762-4.45h4.96508c2.4826 0 4.5073 1.99 4.5073 4.44v4.78998zm9.73485-2.68978 2.92 2.90998c.15.15.23.34.23.55 0 .2-.08.4-.23.54l-2.92 2.91c-.15.15-.35.23-.54.23-.2 0-.4-.08-.55-.23-.3-.3-.3-.79 0-1.09l1.6-1.59h-4.14v-1.54h4.14l-1.6-1.58998c-.3-.3-.3-.79 0-1.09.3-.31.79-.31 1.09-.01z"
       fill="currentColor"
     />
+  </svg>
+);
+
+export const Download = ({ size = 24, width, height, ...props }: IconProps) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    aria-hidden="true"
+    focusable="false"
+    height={size || height}
+    width={size || width}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    {...props}
+  >
+    <path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242" />
+    <path d="M12 12v9" />
+    <path d="m8 17 4 4 4-4" />
+  </svg>
+);
+
+export const Globe = ({ size = 24, width, height, ...props }: IconProps) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    aria-hidden="true"
+    focusable="false"
+    height={size || height}
+    width={size || width}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    {...props}
+  >
+    <circle cx="12" cy="12" r="10" />
+    <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
+    <path d="M2 12h20" />
+  </svg>
+);
+
+export const Home = ({ size = 24, width, height, ...props }: IconProps) => (
+  <svg
+    aria-hidden="true"
+    focusable="false"
+    height={size || height}
+    width={size || width}
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M20.3394 7.65929C21.0094 8.17829 21.4204 8.94929 21.4904 9.78829L21.5004 9.98929V18.0983C21.5004 20.1883 19.8494 21.8883 17.7804 21.9983H15.7904C14.8394 21.9793 14.0704 21.2393 14.0004 20.3093L13.9904 20.1683V17.3093C13.9904 16.9983 13.7594 16.7393 13.4504 16.6883L13.3604 16.6783H10.6894C10.3704 16.6883 10.1104 16.9183 10.0704 17.2183L10.0604 17.3093V20.1593C10.0604 20.2183 10.0494 20.2883 10.0404 20.3383L10.0304 20.3593L10.0194 20.4283C9.9004 21.2793 9.2004 21.9283 8.3304 21.9893L8.2004 21.9983H6.4104C4.3204 21.9983 2.6104 20.3593 2.5004 18.2983V9.98929C2.5094 9.13829 2.8804 8.34829 3.5004 7.79829L9.7304 2.78829C11.0004 1.77929 12.7804 1.73929 14.0894 2.66829L14.2504 2.78829L20.3394 7.65929ZM20.0994 18.2583L20.1104 18.0983V9.99829C20.0994 9.56929 19.9204 9.16829 19.6104 8.86929L19.4804 8.75829L13.3804 3.87829C12.6204 3.26829 11.5404 3.23929 10.7404 3.76829L10.5894 3.87829L4.5094 8.77929C4.1604 9.03829 3.9504 9.42829 3.9004 9.83829L3.8894 9.99829V18.0983C3.8894 19.4283 4.9294 20.5183 6.2504 20.5983H8.2004C8.4204 20.5983 8.6104 20.4493 8.6394 20.2393L8.6604 20.0593L8.6704 20.0083V17.3093C8.6704 16.2393 9.4904 15.3693 10.5404 15.2883H13.3604C14.4294 15.2883 15.2994 16.1093 15.3804 17.1593V20.1683C15.3804 20.3783 15.5304 20.5593 15.7304 20.5983H17.5894C18.9294 20.5983 20.0194 19.5693 20.0994 18.2583Z"
+      fill="currentColor"
+    />
+  </svg>
+);
+
+export const Trending = ({ size = 24, width, height, ...props }: IconProps) => (
+  <svg
+    aria-hidden="true"
+    focusable="false"
+    height={size || height}
+    width={size || width}
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <g>
+      <path
+        d="M7.50043 15.2499C7.31043 15.2499 7.12043 15.1799 6.97043 15.0299C6.68043 14.7399 6.68043 14.2599 6.97043 13.9699L10.1704 10.7699C10.3304 10.6099 10.5404 10.5299 10.7704 10.5499C10.9904 10.5699 11.1904 10.6899 11.3204 10.8799L12.4104 12.5199L15.9604 8.96994C16.2504 8.67994 16.7304 8.67994 17.0204 8.96994C17.3104 9.25994 17.3104 9.73994 17.0204 10.0299L12.8204 14.2299C12.6604 14.3899 12.4504 14.4699 12.2204 14.4499C12.0004 14.4299 11.8004 14.3099 11.6704 14.1199L10.5804 12.4799L8.03043 15.0299C7.88043 15.1799 7.69043 15.2499 7.50043 15.2499Z"
+        fill="currentColor"
+      />
+      <path
+        d="M16.5 12.25C16.09 12.25 15.75 11.91 15.75 11.5V10.25H14.5C14.09 10.25 13.75 9.91 13.75 9.5C13.75 9.09 14.09 8.75 14.5 8.75H16.5C16.91 8.75 17.25 9.09 17.25 9.5V11.5C17.25 11.91 16.91 12.25 16.5 12.25Z"
+        fill="currentColor"
+      />
+      <path
+        d="M15 22.75H9C3.57 22.75 1.25 20.43 1.25 15V9C1.25 3.57 3.57 1.25 9 1.25H15C20.43 1.25 22.75 3.57 22.75 9V15C22.75 20.43 20.43 22.75 15 22.75ZM9 2.75C4.39 2.75 2.75 4.39 2.75 9V15C2.75 19.61 4.39 21.25 9 21.25H15C19.61 21.25 21.25 19.61 21.25 15V9C21.25 4.39 19.61 2.75 15 2.75H9Z"
+        fill="currentColor"
+      />
+    </g>
+  </svg>
+);
+
+export const Discover = ({ size = 24, width, height, ...props }: IconProps) => (
+  <svg
+    aria-hidden="true"
+    focusable="false"
+    height={size || height}
+    width={size || width}
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <g>
+      <path
+        d="M4.90926 22.8207C3.81926 22.8207 2.88926 22.4707 2.20926 21.7907C1.23926 20.8207 0.939261 19.3407 1.36926 17.6207L3.84926 7.69075C4.27926 5.97075 5.95926 4.30075 7.66926 3.87075L17.5993 1.39075C19.3193 0.960746 20.7993 1.26075 21.7693 2.23075C22.7393 3.20075 23.0393 4.68075 22.6093 6.40075L20.1293 16.3307C19.6993 18.0507 18.0193 19.7207 16.3093 20.1507L6.37926 22.6307C5.86926 22.7507 5.37926 22.8207 4.90926 22.8207ZM17.9793 2.83075L8.04926 5.32075C6.87926 5.61075 5.60926 6.88075 5.30926 8.05075L2.82926 17.9807C2.52926 19.1707 2.68926 20.1407 3.26926 20.7307C3.84926 21.3107 4.82926 21.4707 6.01926 21.1707L15.9493 18.6907C17.1193 18.4007 18.3893 17.1207 18.6793 15.9607L21.1593 6.03075C21.4593 4.84075 21.2993 3.87075 20.7193 3.28075C20.1393 2.69075 19.1693 2.54075 17.9793 2.83075Z"
+        fill="currentColor"
+      />
+      <path
+        d="M12 16.25C9.66 16.25 7.75 14.34 7.75 12C7.75 9.66 9.66 7.75 12 7.75C14.34 7.75 16.25 9.66 16.25 12C16.25 14.34 14.34 16.25 12 16.25ZM12 9.25C10.48 9.25 9.25 10.48 9.25 12C9.25 13.52 10.48 14.75 12 14.75C13.52 14.75 14.75 13.52 14.75 12C14.75 10.48 13.52 9.25 12 9.25Z"
+        fill="currentColor"
+      />
+    </g>
+  </svg>
+);
+
+export const TwoUser = ({ size = 24, width, height, ...props }: IconProps) => (
+  <svg
+    aria-hidden="true"
+    focusable="false"
+    height={size || height}
+    width={size || width}
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <path
+      d="M16.0201 10.9134C17.8411 10.9134 19.3171 9.4374 19.3171 7.6164C19.3171 5.7964 17.8411 4.3194 16.0201 4.3194"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M17.5363 14.4964C18.0803 14.5334 18.6203 14.6114 19.1533 14.7294C19.8923 14.8764 20.7823 15.1794 21.0983 15.8424C21.3003 16.2674 21.3003 16.7624 21.0983 17.1874C20.7833 17.8504 19.8923 18.1534 19.1533 18.3054"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M9.59143 15.2063C13.2814 15.2063 16.4334 15.7653 16.4334 17.9983C16.4334 20.2323 13.3014 20.8103 9.59143 20.8103C5.90143 20.8103 2.75043 20.2523 2.75043 18.0183C2.75043 15.7843 5.88143 15.2063 9.59143 15.2063Z"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M9.5914 12.0188C7.1574 12.0188 5.2074 10.0678 5.2074 7.63379C5.2074 5.20079 7.1574 3.24979 9.5914 3.24979C12.0254 3.24979 13.9764 5.20079 13.9764 7.63379C13.9764 10.0678 12.0254 12.0188 9.5914 12.0188Z"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
+export const Category = ({ size = 24, width, height, ...props }: IconProps) => (
+  <svg
+    aria-hidden="true"
+    focusable="false"
+    height={size || height}
+    width={size || width}
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M16.2855 2H19.5521C20.9036 2 22 3.1059 22 4.47018V7.7641C22 9.12735 20.9036 10.2343 19.5521 10.2343H16.2855C14.933 10.2343 13.8366 9.12735 13.8366 7.7641V4.47018C13.8366 3.1059 14.933 2 16.2855 2Z"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M4.44892 2H7.71449C9.06703 2 10.1634 3.1059 10.1634 4.47018V7.7641C10.1634 9.12735 9.06703 10.2343 7.71449 10.2343H4.44892C3.09638 10.2343 2 9.12735 2 7.7641V4.47018C2 3.1059 3.09638 2 4.44892 2Z"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M4.44892 13.7657H7.71449C9.06703 13.7657 10.1634 14.8716 10.1634 16.2369V19.5298C10.1634 20.8941 9.06703 22 7.71449 22H4.44892C3.09638 22 2 20.8941 2 19.5298V16.2369C2 14.8716 3.09638 13.7657 4.44892 13.7657Z"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M16.2855 13.7657H19.5521C20.9036 13.7657 22 14.8716 22 16.2369V19.5298C22 20.8941 20.9036 22 19.5521 22H16.2855C14.933 22 13.8366 20.8941 13.8366 19.5298V16.2369C13.8366 14.8716 14.933 13.7657 16.2855 13.7657Z"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
+export const History = ({ size = 24, width, height, ...props }: IconProps) => (
+  <svg
+    aria-hidden="true"
+    focusable="false"
+    height={size || height}
+    width={size || width}
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <path
+      fill="currentColor"
+      d="M19.5 12A7.5 7.5 0 0 0 6.9 6.5h1.35a.75.75 0 0 1 0 1.5h-3a.75.75 0 0 1-.75-.75v-3a.75.75 0 0 1 1.5 0v1.042a9 9 0 1 1-2.895 5.331a.749.749 0 0 1 .752-.623c.46 0 .791.438.724.892A7.5 7.5 0 1 0 19.5 12Zm-7-4.25a.75.75 0 0 0-1.5 0v4.5c0 .414.336.75.75.75h2.5a.75.75 0 0 0 0-1.5H12.5V7.75Z"
+    />
+  </svg>
+);
+
+export const Settings2 = ({
+  size = 24,
+  width,
+  height,
+  ...props
+}: IconProps) => (
+  <svg
+    aria-hidden="true"
+    focusable="false"
+    height={size || height}
+    width={size || width}
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <g transform="translate(2.5 1.5)">
+      <path
+        d="M17.528,5.346l-.622-1.08a1.913,1.913,0,0,0-2.609-.7h0a1.9,1.9,0,0,1-2.609-.677,1.831,1.831,0,0,1-.256-.915h0A1.913,1.913,0,0,0,9.519,0H8.265a1.9,1.9,0,0,0-1.9,1.913h0A1.913,1.913,0,0,1,4.448,3.8a1.831,1.831,0,0,1-.915-.256h0a1.913,1.913,0,0,0-2.609.7l-.668,1.1a1.913,1.913,0,0,0,.7,2.609h0a1.913,1.913,0,0,1,.957,1.657,1.913,1.913,0,0,1-.957,1.657h0a1.9,1.9,0,0,0-.7,2.6h0l.632,1.089A1.913,1.913,0,0,0,3.5,15.7h0a1.895,1.895,0,0,1,2.6.7,1.831,1.831,0,0,1,.256.915h0a1.913,1.913,0,0,0,1.913,1.913H9.519a1.913,1.913,0,0,0,1.913-1.9h0a1.9,1.9,0,0,1,1.913-1.913,1.95,1.95,0,0,1,.915.256h0a1.913,1.913,0,0,0,2.609-.7h0l.659-1.1a1.9,1.9,0,0,0-.7-2.609h0a1.9,1.9,0,0,1-.7-2.609,1.876,1.876,0,0,1,.7-.7h0a1.913,1.913,0,0,0,.7-2.6h0Z"
+        transform="translate(0.779 0.778)"
+        fill="none"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeMiterlimit="10"
+        strokeWidth="1.5"
+      />
+      <circle
+        cx="2.636"
+        cy="2.636"
+        r="2.636"
+        transform="translate(7.039 7.753)"
+        fill="none"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeMiterlimit="10"
+        strokeWidth="1.5"
+      />
+    </g>
+  </svg>
+);
+
+export const Search = ({ size = 24, width, height, ...props }: IconProps) => (
+  <svg
+    aria-hidden="true"
+    focusable="false"
+    height={size || height}
+    width={size || width}
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <g
+      transform="translate(2 2)"
+      fill="none"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeMiterlimit="10"
+      strokeWidth="1.5"
+    >
+      <circle
+        cx={8.989}
+        cy={8.989}
+        r={8.989}
+        transform="translate(.778 .778)"
+      />
+      <path d="M16.018 16.485L19.542 20" />
+    </g>
+  </svg>
+);
+
+export const Movie = ({ size = 24, width, height, ...props }: IconProps) => (
+  <svg
+    aria-hidden="true"
+    focusable="false"
+    height={size || height}
+    width={size || width}
+    viewBox="0 0 48 48"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <g>
+      <path
+        d="M24 44C35.0457 44 44 35.0457 44 24C44 12.9543 35.0457 4 24 4C12.9543 4 4 12.9543 4 24C4 35.0457 12.9543 44 24 44Z"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="3"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M24 18C25.6569 18 27 16.6569 27 15C27 13.3431 25.6569 12 24 12C22.3431 12 21 13.3431 21 15C21 16.6569 22.3431 18 24 18Z"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="3"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M24 36C25.6569 36 27 34.6569 27 33C27 31.3431 25.6569 30 24 30C22.3431 30 21 31.3431 21 33C21 34.6569 22.3431 36 24 36Z"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="3"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M15 27C16.6569 27 18 25.6569 18 24C18 22.3431 16.6569 21 15 21C13.3431 21 12 22.3431 12 24C12 25.6569 13.3431 27 15 27Z"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="3"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M33 27C34.6569 27 36 25.6569 36 24C36 22.3431 34.6569 21 33 21C31.3431 21 30 22.3431 30 24C30 25.6569 31.3431 27 33 27Z"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="3"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M24 44H44"
+        stroke="currentColor"
+        strokeWidth="3"
+        strokeLinecap="round"
+      />
+    </g>
+  </svg>
+);
+
+export const Anime = ({ size = 24, width, height, ...props }: IconProps) => (
+  <svg
+    aria-hidden="true"
+    focusable="false"
+    height={size || height}
+    width={size || width}
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <g>
+      <path
+        fill="currentColor"
+        d="M7.172 2.757L10.414 6h3.171l3.243-3.242a1 1 0 0 1 1.415 1.415L16.414 6H18.5A3.5 3.5 0 0 1 22 9.5v8a3.5 3.5 0 0 1-3.5 3.5h-13A3.5 3.5 0 0 1 2 17.5v-8A3.5 3.5 0 0 1 5.5 6h2.085L5.757 4.171a1 1 0 0 1 1.415-1.415zM18.5 8h-13a1.5 1.5 0 0 0-1.493 1.356L4 9.5v8a1.5 1.5 0 0 0 1.356 1.493L5.5 19h13a1.5 1.5 0 0 0 1.493-1.356L20 17.5v-8A1.5 1.5 0 0 0 18.5 8zM8 11a1 1 0 0 1 1 1v2a1 1 0 0 1-2 0v-2a1 1 0 0 1 1-1zm8 0a1 1 0 0 1 1 1v2a1 1 0 0 1-2 0v-2a1 1 0 0 1 1-1z"
+      />
+    </g>
+  </svg>
+);
+
+export const Television = ({
+  size = 24,
+  width,
+  height,
+  ...props
+}: IconProps) => (
+  <svg
+    aria-hidden="true"
+    focusable="false"
+    height={size || height}
+    width={size || width}
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <g>
+      <path
+        fill="currentColor"
+        d="M4.75 4A2.75 2.75 0 0 0 2 6.75v8.5A2.75 2.75 0 0 0 4.75 18h14.5A2.75 2.75 0 0 0 22 15.25v-8.5A2.75 2.75 0 0 0 19.25 4H4.75ZM3.5 6.75c0-.69.56-1.25 1.25-1.25h14.5c.69 0 1.25.56 1.25 1.25v8.5c0 .69-.56 1.25-1.25 1.25H4.75c-.69 0-1.25-.56-1.25-1.25v-8.5ZM5.75 19.5a.75.75 0 0 0 0 1.5h12.5a.75.75 0 0 0 0-1.5H5.75Z"
+      />
+    </g>
   </svg>
 );

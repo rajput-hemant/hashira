@@ -319,7 +319,7 @@ export function AuthForm({ mode, className, ...props }: AuthFormProps) {
           startContent={
             oauthLoading !== "google" && <Google className="h-5 w-5" />
           }
-          onClick={googleSignInHandler}
+          onPress={googleSignInHandler}
           className="border"
         >
           <span className="mt-1 hidden sm:block">
@@ -334,7 +334,7 @@ export function AuthForm({ mode, className, ...props }: AuthFormProps) {
           startContent={
             oauthLoading !== "github" && <Github className="h-5 w-5" />
           }
-          onClick={githubSignInHandler}
+          onPress={githubSignInHandler}
           className="border"
         >
           <span className="mt-1 hidden sm:block">

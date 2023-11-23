@@ -7,7 +7,7 @@ import { siteConfig } from "@/config/site";
 import { Github } from "@/components/icons";
 import { ShimmerButton } from "@/components/magicui/shimmer-button";
 
-export default function App() {
+export default function Lobby() {
   return (
     <section className="grid items-center gap-6 px-4 py-12 md:px-6 md:pt-24">
       <div className="container flex flex-col items-center justify-center space-y-10 text-center">

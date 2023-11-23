@@ -14,8 +14,10 @@ import {
   poppins,
 } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
-import { Footer } from "@/components/footer";
+import { Cmdk } from "@/components/cmdk";
 import { DotPattern } from "@/components/magicui/dot-pattern";
+import { Sidebar } from "@/components/sidebar";
+import { BottomNavigation } from "@/components/site-header/bottom-navigation";
 import { Navbar } from "@/components/site-header/navbar";
 import { TailwindIndicator } from "@/components/tailwind-indicator";
 
@@ -54,15 +56,13 @@ export const metadata: Metadata = {
 };
 
 type RootLayoutProps = {
-  modal: React.ReactNode;
   children: React.ReactNode;
 };
 
-export default async function RootLayout({ modal, children }: RootLayoutProps) {
+export default async function RootLayout({ children }: RootLayoutProps) {
   const user = await getUser();
-
   return (
-    <html dir="ltr" lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <head />
 
       <body
@@ -78,12 +78,16 @@ export default async function RootLayout({ modal, children }: RootLayoutProps) {
       >
         <DotPattern className="pointer-events-none !fixed opacity-50 [mask-image:radial-gradient(800px_circle_at_center,white,transparent)]" />
 
-        <Providers className="flex min-h-screen flex-col">
-          <Navbar user={user} />
-          <div className="z-0 flex-1">{children}</div>
-          <Footer />
+        <Providers className="flex">
+          <Sidebar className="hidden min-h-screen w-1/5 xl:block" />
+          <div className="w-full">
+            <Navbar user={user} />
+            {children}
+          </div>
 
-          {modal}
+          <BottomNavigation className="sm:hidden" />
+
+          <Cmdk />
         </Providers>
 
         <TailwindIndicator />
